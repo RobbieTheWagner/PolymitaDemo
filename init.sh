@@ -199,6 +199,11 @@ echo
 cp support/MANIFEST.MF $SERVER_DIR/business-central-server.war/WEB-INF/classes/META-INF/
 cp support/MANIFEST.MF $SERVER_DIR/jbpm-human-task.war/WEB-INF/classes/META-INF/
 
+echo "  - adding dashbuilder.war (Polymita) to the deployments folder..."
+echo
+cp support/dashbuilder.war $SERVER_DIR
+touch $SERVER_DIR/dashbuilder.war.dodeploy
+
 
 echo "  - mavenizing your repo with BRMS components."
 echo
