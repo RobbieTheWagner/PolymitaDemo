@@ -204,6 +204,11 @@ echo
 cp support/dashbuilder.war $SERVER_DIR
 touch $SERVER_DIR/dashbuilder.war.dodeploy
 
+echo "  -deploying current PolymitaDemo app..."
+echo
+cp support/PolymitaDemo.war $SERVER_DIR
+touch $SERVER_DIR/PolymitaDemo.war.dodeploy
+
 
 echo "  - mavenizing your repo with BRMS components."
 echo
