@@ -11,15 +11,6 @@ import org.railinc.shipping.Shipment;
 @Stateless
 public class ShippingServiceImpl implements ShippingService {
 	
-	@Inject
-	ShippingServiceOld ss;
-	
-	@Inject
-	PromoService ps;
-	
-	@Inject
-	ProductService pp;
-	
 	public void priceShipment(Shipment s) {
 						
 		/*if ( s != null ) {

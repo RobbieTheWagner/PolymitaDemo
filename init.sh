@@ -201,12 +201,12 @@ cp support/MANIFEST.MF $SERVER_DIR/jbpm-human-task.war/WEB-INF/classes/META-INF/
 
 echo "  - adding dashbuilder.war (Polymita) to the deployments folder..."
 echo
-cp support/dashbuilder.war $SERVER_DIR
+cp -Rf support/dashbuilder.war $SERVER_DIR
 touch $SERVER_DIR/dashbuilder.war.dodeploy
 
 echo "  -deploying current PolymitaDemo app..."
 echo
-cp support/PolymitaDemo.war $SERVER_DIR
+cp -Rf support/PolymitaDemo.war $SERVER_DIR
 touch $SERVER_DIR/PolymitaDemo.war.dodeploy
 
 
@@ -278,7 +278,7 @@ echo "######################################################################"
 echo
 echo You will need to add to your personal ~/.m2/settings.xml the settings provided in the file:
 echo
-echo "  projects/brms-coolstore-demo/maven/settings.xml" 
+echo "  ./settings.xml"
 echo
 echo These are setup to point maven to the local JBoss EAP6 maven artefacts in the /tmp directory
 echo repository just extracted for you.
