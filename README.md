@@ -16,8 +16,10 @@ Copy these files to the installs directory in the root of this repo.
 
 Ensure that these files are executable by running:
 
+```
 chmod +x ~/Downloads/PolymitaDemo/installs/jboss-eap-6.1.0.zip
 chmod +x ~/Downloads/PolymitaDemo/installs/brms-p-5.3.1.GA-deployable-ee6.zip
+```
 
 Step 3: Make sure you have Maven installed on your machine
 
