@@ -1,0 +1,30 @@
+----------------------------------------------------------------
+2013-08-28 14:26:38.959 GMT:
+ Booting Derby version The Apache Software Foundation - Apache Derby - 10.5.3.0 - (802917): instance a816c00e-0140-c551-a579-000023111f30
+on database directory /home/rowagner/opt/brms-coolstore-demo-master/target/jboss-eap-6.1/bin/repository/version/db  
+
+Database Class Loader started - derby.database.classpath=''
+----------------------------------------------------------------
+2013-08-28 14:26:39.401 GMT:
+ Booting Derby version The Apache Software Foundation - Apache Derby - 10.5.3.0 - (802917): instance 888c4022-0140-c551-a579-000023111f30
+on database directory /home/rowagner/opt/brms-coolstore-demo-master/target/jboss-eap-6.1/bin/repository/workspaces/default/db  
+
+Database Class Loader started - derby.database.classpath=''
+----------------------------------------------------------------
+2013-08-28 14:26:40.124 GMT:
+ Booting Derby version The Apache Software Foundation - Apache Derby - 10.5.3.0 - (802917): instance e1734037-0140-c551-a579-000023111f30
+on database directory /home/rowagner/opt/brms-coolstore-demo-master/target/jboss-eap-6.1/bin/repository/workspaces/security/db  
+
+Database Class Loader started - derby.database.classpath=''
+
+2013-08-28 14:30:44.134 GMT:
+Shutting down instance 888c4022-0140-c551-a579-000023111f30
+----------------------------------------------------------------
+
+2013-08-28 14:30:44.156 GMT:
+Shutting down instance e1734037-0140-c551-a579-000023111f30
+----------------------------------------------------------------
+
+2013-08-28 14:30:44.169 GMT:
+Shutting down instance a816c00e-0140-c551-a579-000023111f30
+----------------------------------------------------------------

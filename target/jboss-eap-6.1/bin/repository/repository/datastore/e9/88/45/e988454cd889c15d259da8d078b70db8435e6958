@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<bpmn2:definitions xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://www.omg.org/bpmn20" xmlns:bpmn2="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" xmlns:drools="http://www.jboss.org/drools" id="_UQuDwCHmEeK3OPhnf8R6wA" xsi:schemaLocation="http://www.omg.org/spec/BPMN/20100524/MODEL BPMN20.xsd" targetNamespace="http://www.omg.org/bpmn20">
+  <bpmn2:itemDefinition id="_OrigLocationItem" structureRef="String"/>
+  <bpmn2:itemDefinition id="__7482FBAA-7042-4124-A469-195E55306E2E_CountryInputItem" structureRef="String"/>
+  <bpmn2:itemDefinition id="__7482FBAA-7042-4124-A469-195E55306E2E_ResultOutputItem" structureRef="String"/>
+  <bpmn2:process id="com.wu.TransactionValidationProcess" drools:packageName="com.wu" drools:version="1.0" name="Transaction Validation Process" isExecutable="true">
+    <bpmn2:property id="OrigLocation" itemSubjectRef="_OrigLocationItem"/>
+    <bpmn2:startEvent id="_23A991A9-5F9E-47FD-9921-E22D8F54CB87" drools:bgcolor="#9acd32" name="">
+      <bpmn2:outgoing>_E3D39454-8CB6-4A49-8AEE-B542E93634F0</bpmn2:outgoing>
+    </bpmn2:startEvent>
+    <bpmn2:businessRuleTask id="_C31770D7-4488-40C5-B755-081FE1A6FB0E" drools:bgcolor="#fafad2" drools:ruleFlowGroup="validation" name="Validation Rules">
+      <bpmn2:incoming>_E3D39454-8CB6-4A49-8AEE-B542E93634F0</bpmn2:incoming>
+      <bpmn2:outgoing>_03FE6F39-FD4E-4DF6-9B5C-3D2F3FF4CFE3</bpmn2:outgoing>
+    </bpmn2:businessRuleTask>
+    <bpmn2:endEvent id="_86F69F24-F212-48B3-A6B2-83FDB2ABBBCC" drools:bgcolor="#ff6347" name="">
+      <bpmn2:incoming>_167F6BF4-9A66-4084-A373-6F42B198A618</bpmn2:incoming>
+    </bpmn2:endEvent>
+    <bpmn2:sequenceFlow id="_E3D39454-8CB6-4A49-8AEE-B542E93634F0" sourceRef="_23A991A9-5F9E-47FD-9921-E22D8F54CB87" targetRef="_C31770D7-4488-40C5-B755-081FE1A6FB0E"/>
+    <bpmn2:businessRuleTask id="_4637209C-8011-4B89-94AC-CDB0A67D2628" drools:bgcolor="#fafad2" drools:ruleFlowGroup="final" name="Final Rules">
+      <bpmn2:incoming>_10EB5C11-8BCA-41D5-8EE8-CCA6BD95A238</bpmn2:incoming>
+      <bpmn2:outgoing>_167F6BF4-9A66-4084-A373-6F42B198A618</bpmn2:outgoing>
+    </bpmn2:businessRuleTask>
+    <bpmn2:sequenceFlow id="_167F6BF4-9A66-4084-A373-6F42B198A618" sourceRef="_4637209C-8011-4B89-94AC-CDB0A67D2628" targetRef="_86F69F24-F212-48B3-A6B2-83FDB2ABBBCC"/>
+    <bpmn2:task id="_7482FBAA-7042-4124-A469-195E55306E2E" drools:bgcolor="#fafad2" drools:taskName="CountryIdWildcard" name="Country Id Wildcard">
+      <bpmn2:incoming>_03FE6F39-FD4E-4DF6-9B5C-3D2F3FF4CFE3</bpmn2:incoming>
+      <bpmn2:outgoing>_10EB5C11-8BCA-41D5-8EE8-CCA6BD95A238</bpmn2:outgoing>
+      <bpmn2:ioSpecification id="_UQuDwSHmEeK3OPhnf8R6wA">
+        <bpmn2:dataInput id="_7482FBAA-7042-4124-A469-195E55306E2E_TaskNameInput" name="TaskName"/>
+        <bpmn2:dataInput id="_7482FBAA-7042-4124-A469-195E55306E2E_CountryInput" drools:dtype="String" itemSubjectRef="__7482FBAA-7042-4124-A469-195E55306E2E_CountryInputItem" name="Country"/>
+        <bpmn2:dataOutput id="_7482FBAA-7042-4124-A469-195E55306E2E_ResultOutput" drools:dtype="String" itemSubjectRef="__7482FBAA-7042-4124-A469-195E55306E2E_ResultOutputItem" name="Result"/>
+        <bpmn2:inputSet id="_UQuDwiHmEeK3OPhnf8R6wA">
+          <bpmn2:dataInputRefs>_7482FBAA-7042-4124-A469-195E55306E2E_CountryInput</bpmn2:dataInputRefs>
+          <bpmn2:dataInputRefs>_7482FBAA-7042-4124-A469-195E55306E2E_TaskNameInput</bpmn2:dataInputRefs>
+        </bpmn2:inputSet>
+        <bpmn2:outputSet id="_UQuDwyHmEeK3OPhnf8R6wA">
+          <bpmn2:dataOutputRefs>_7482FBAA-7042-4124-A469-195E55306E2E_ResultOutput</bpmn2:dataOutputRefs>
+        </bpmn2:outputSet>
+      </bpmn2:ioSpecification>
+      <bpmn2:dataInputAssociation id="_UQuDxCHmEeK3OPhnf8R6wA">
+        <bpmn2:targetRef>_7482FBAA-7042-4124-A469-195E55306E2E_TaskNameInput</bpmn2:targetRef>
+        <bpmn2:assignment id="_UQuDxSHmEeK3OPhnf8R6wA">
+          <bpmn2:from xsi:type="bpmn2:tFormalExpression" id="_UQuDxiHmEeK3OPhnf8R6wA">CountryIdWildcard</bpmn2:from>
+          <bpmn2:to xsi:type="bpmn2:tFormalExpression" id="_UQuDxyHmEeK3OPhnf8R6wA">_7482FBAA-7042-4124-A469-195E55306E2E_TaskNameInput</bpmn2:to>
+        </bpmn2:assignment>
+      </bpmn2:dataInputAssociation>
+      <bpmn2:dataInputAssociation id="_UQuDyCHmEeK3OPhnf8R6wA">
+        <bpmn2:sourceRef>OrigLocation</bpmn2:sourceRef>
+        <bpmn2:targetRef>_7482FBAA-7042-4124-A469-195E55306E2E_CountryInput</bpmn2:targetRef>
+      </bpmn2:dataInputAssociation>
+    </bpmn2:task>
+    <bpmn2:sequenceFlow id="_03FE6F39-FD4E-4DF6-9B5C-3D2F3FF4CFE3" sourceRef="_C31770D7-4488-40C5-B755-081FE1A6FB0E" targetRef="_7482FBAA-7042-4124-A469-195E55306E2E"/>
+    <bpmn2:sequenceFlow id="_10EB5C11-8BCA-41D5-8EE8-CCA6BD95A238" sourceRef="_7482FBAA-7042-4124-A469-195E55306E2E" targetRef="_4637209C-8011-4B89-94AC-CDB0A67D2628"/>
+  </bpmn2:process>
+  <bpmndi:BPMNDiagram id="_UQuq0CHmEeK3OPhnf8R6wA">
+    <bpmndi:BPMNPlane id="_UQuq0SHmEeK3OPhnf8R6wA" bpmnElement="com.wu.TransactionValidationProcess">
+      <bpmndi:BPMNShape id="_UQuq0iHmEeK3OPhnf8R6wA" bpmnElement="_23A991A9-5F9E-47FD-9921-E22D8F54CB87">
+        <dc:Bounds height="30.0" width="30.0" x="60.0" y="140.0"/>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="_UQuq0yHmEeK3OPhnf8R6wA" bpmnElement="_C31770D7-4488-40C5-B755-081FE1A6FB0E">
+        <dc:Bounds height="80.0" width="100.0" x="120.0" y="115.0"/>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="_UQuq1CHmEeK3OPhnf8R6wA" bpmnElement="_86F69F24-F212-48B3-A6B2-83FDB2ABBBCC">
+        <dc:Bounds height="28.0" width="28.0" x="582.0" y="138.0"/>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="_UQuq1SHmEeK3OPhnf8R6wA" bpmnElement="_E3D39454-8CB6-4A49-8AEE-B542E93634F0">
+        <di:waypoint xsi:type="dc:Point" x="75.0" y="155.0"/>
+        <di:waypoint xsi:type="dc:Point" x="170.0" y="155.0"/>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNShape id="_UQuq1iHmEeK3OPhnf8R6wA" bpmnElement="_4637209C-8011-4B89-94AC-CDB0A67D2628">
+        <dc:Bounds height="80.0" width="100.0" x="435.0" y="115.0"/>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="_UQuq1yHmEeK3OPhnf8R6wA" bpmnElement="_167F6BF4-9A66-4084-A373-6F42B198A618">
+        <di:waypoint xsi:type="dc:Point" x="485.0" y="155.0"/>
+        <di:waypoint xsi:type="dc:Point" x="596.0" y="152.0"/>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNShape id="_UQuq2CHmEeK3OPhnf8R6wA" bpmnElement="_7482FBAA-7042-4124-A469-195E55306E2E">
+        <dc:Bounds height="101.0" width="114.0" x="270.0" y="104.0"/>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="_UQuq2SHmEeK3OPhnf8R6wA" bpmnElement="_03FE6F39-FD4E-4DF6-9B5C-3D2F3FF4CFE3">
+        <di:waypoint xsi:type="dc:Point" x="170.0" y="155.0"/>
+        <di:waypoint xsi:type="dc:Point" x="327.0" y="154.5"/>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="_UQuq2iHmEeK3OPhnf8R6wA" bpmnElement="_10EB5C11-8BCA-41D5-8EE8-CCA6BD95A238">
+        <di:waypoint xsi:type="dc:Point" x="327.0" y="154.5"/>
+        <di:waypoint xsi:type="dc:Point" x="485.0" y="155.0"/>
+      </bpmndi:BPMNEdge>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+</bpmn2:definitions>

@@ -1,0 +1,65 @@
+
+rule "TC Too Hot"
+  dialect "mvel"
+  ruleflow-group "temperatureControlledCheck"
+  when
+    s:Shipment(state=="in-process",maxETC:maxEstimatedTempC != null)
+    c:Container(shipmentParent==s, state=="accepted", type=="standard")
+    Item(containerParent==c, state=="accepted", maxAllowableTemp < maxETC)
+    not Approval( containerParent==c, type=="temperature-controlled")
+  then
+    insert( new Approval( c ) );
+end
+
+
+rule "TC Too Cold"
+  dialect "mvel"
+  ruleflow-group "temperatureControlledCheck"
+  when
+    s:Shipment(state=="in-process",minETC:minEstimatedTempC != null )
+    c:Container(state=="accepted",shipmentParent==s, type=="standard")
+    Item(containerParent==c, state=="accepted", minAllowableTemp > minETC)
+    not Approval( containerParent==c, type=="temperature-controlled")
+  then
+    insert( new Approval( c ) );
+end
+
+
+
+rule "approveTemperatureControlled"
+  ruleflow-group "temperatureControlledRubberstamp"
+    
+  when
+    c:Container(state=="accepted", type=="standard")
+    a:Approval( containerParent == c, type=="temperature-controlled", state=="waiting" )
+  then
+    a.setState("approved");
+    update(a);  
+end
+
+rule "approvedContainer"
+  ruleflow-group "updateContainer"
+  
+  when
+    c:Container(state=="accepted", type=="standard")
+    a:Approval( containerParent==c, state=="approved" )
+  then
+    c.setType("temperature-controlled");
+    float p=c.getPriceDollars();
+    c.setPriceDollars(p*2);
+    System.out.println("Doubling price for container");
+    update(c)
+end
+
+rule "shipmentPriceTotal"
+    ruleflow-group "shipmentPricing"
+    when
+        ashipment:  Shipment( state=="in-process")
+        totalPrice: Number( floatValue > 0 )
+        	from accumulate( Container( shipmentParent==ashipment, priceVal:priceDollars, state=="accepted"), sum( priceVal ) )
+    then
+        ashipment.setPriceDollars( totalPrice.floatValue() );
+        ashipment.setState("accepted");
+        update( ashipment )
+        System.out.println("Set Shipment price");
+end       

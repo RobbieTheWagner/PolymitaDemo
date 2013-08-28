@@ -1,0 +1,43 @@
+//created on: Aug 21, 2013
+
+rule "ItemStarter"
+	no-loop true
+    when
+	i:Item(state=="start-process")
+    then
+	i.setState("in-process");
+	update(i);
+	kcontext.getKnowledgeRuntime().startProcess("org.railinc.shipping.MasterFlow");
+end
+
+rule "ContainerStarter"
+	no-loop true
+	ruleflow-group "startContainer"
+    when
+	c:Container(state=="start-process") and not Item(containerParent==c, state!="accepted")
+    then
+	c.setState("in-process");
+	update(c);
+	System.out.println(c.getState() + " CONTAINER");
+end
+
+rule "ShipmentStarter"
+	no-loop true
+	ruleflow-group "startShipment"
+    when
+	s:Shipment(state=="start-process") and not Container(shipmentParent==s, state!="accepted")
+    then
+	s.setState("in-process");
+	update(s);
+end
+
+rule "BOLStarter"
+	no-loop true
+	ruleflow-group "startBOL"
+	lock-on-active true
+    when
+	b:BillOfLading(state=="start-process") and not Shipment(billOfLadingParent==b, state!="accepted")
+    then
+	b.setState("in-process");
+	update(b);
+end

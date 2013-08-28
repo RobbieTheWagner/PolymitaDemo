@@ -1,0 +1,21 @@
+<html>
+<body style='font-family: sans-serif; font-size:10pt;'>
+
+<h1>BRMS Central Server</h1>
+
+<h2>Published URL's</h2>
+You can find a list of jBPM REST resources <a href="/business-central-server/rs/server/resources/jbpm">here</a>.
+
+<h2>Example usage</h2>
+
+<pre>
+   curl -c cookies http://localhost:8080/business-central-server/rs/process/definitions
+   curl -b cookies -L -d "j_username=USER&amp;j_password=PASSWORD" http://localhost:8080/business-central-server/j_security_check --referer http://localhost:8080
+   curl -b cookies -H 'Accept: application/json' http://localhost:8080/business-central-server/rs/process/definition/1/instances
+</pre>
+
+<h2>Problems?</h2>
+Please post any questions to the <a href="http://www.jboss.org/index.html?module=bb&op=viewforum&f=295">developer forum</a>.
+
+</body>
+</html>

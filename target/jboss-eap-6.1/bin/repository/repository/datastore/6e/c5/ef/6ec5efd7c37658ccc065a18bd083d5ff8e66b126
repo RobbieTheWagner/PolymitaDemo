@@ -1,0 +1,20 @@
+
+import java.lang.Number
+
+dialect "mvel"
+
+
+rule "bolPriceTotal"
+    no-loop
+    salience -9
+    ruleflow-group "price"
+    when
+        abol:  BillOfLading()
+//        aitem: Item(containerParent==acontainer,priceDollars>0)
+        totalPrice: Number( floatValue > 0 )
+        	from accumulate( Shipment( billOfLadingParent==abol, priceVal:priceDollars), sum( priceVal ) )
+    then
+        modify(abol) { priceDollars = totalPrice.floatValue() }
+        System.out.println("Set bol price");
+end       
+

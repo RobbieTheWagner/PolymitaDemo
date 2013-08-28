@@ -1,0 +1,43 @@
+//created on: Aug 5, 2013
+
+dialect "mvel"
+rule "weightTotal"
+	no-loop true
+    ruleflow-group "containerWeight"
+    when
+        acontainer:  Container()
+        totalWeight: Number( intValue > 0 )
+        	from accumulate( Item( containerParent==acontainer, weightVal:weightLb, state=="accepted"),
+        	sum(weightVal))
+    then
+        modify(acontainer) { weightLb = totalWeight.intValue() }
+        System.out.println("Set container weight");
+end
+
+rule "containerWeightRejection"
+    ruleflow-group "containerWeight"
+    when
+        c:Container(weightLb > 10000000, state=="in-process")
+    then
+        System.out.println("Container too heavy");
+        c.setState("rejected");
+        update(c);
+        insert( new Rejection( c, "container too heavy") );
+end
+
+
+rule "containerPriceTotal"
+	no-loop true
+    ruleflow-group "containerPricing"
+    when
+        acontainer:  Container()
+        totalPrice: Number( floatValue > 0 )
+        	from accumulate( Item( containerParent==acontainer, state=="accepted", priceVal:priceDollars), sum( priceVal ) )
+    then
+        acontainer.setPriceDollars(totalPrice.floatValue());
+        acontainer.setState("accepted");
+        update(acontainer);
+        System.out.println("Set container price: " + totalPrice.toString());
+        
+end
+

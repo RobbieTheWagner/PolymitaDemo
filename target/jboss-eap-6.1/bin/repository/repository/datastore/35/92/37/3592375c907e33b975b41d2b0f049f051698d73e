@@ -1,0 +1,39 @@
+import java.lang.Number
+
+
+rule "bolPriceTotal"
+    dialect "mvel"
+    salience -9
+    no-loop true
+    ruleflow-group "bolPricing"
+    when
+        abol:  BillOfLading(state=="in-process")
+        totalPrice: Number( floatValue > 0 )
+        	from accumulate( Shipment( billOfLadingParent==abol, priceVal:priceDollars, state=="accepted"), sum( priceVal ) )
+    then
+        abol.setPriceDollars( totalPrice.floatValue());
+        update(abol)
+        System.out.println("Set bol price");
+end
+
+rule "bolValidate"
+  dialect "mvel"
+  no-loop
+  when
+    abol: BillOfLading(state=="start-process",shipper.name !=null, receiver.name !=null, receiver.location!=null)
+  then
+    abol.setState("in-process")
+    update(abol)
+    kcontext.getKnowledgeRuntime().startProcess("org.railinc.shipping.BOLFlow");
+end
+
+rule "bolAccept"
+  dialect "mvel"
+  no-loop
+  ruleflow-group "bolValidation"
+  when
+    abol:BillOfLading(state=="in-process") not (Shipment( billOfLadingParent==abol, state!="accepted") )
+  then
+    abol.setState("accepted")
+    update(abol)
+end

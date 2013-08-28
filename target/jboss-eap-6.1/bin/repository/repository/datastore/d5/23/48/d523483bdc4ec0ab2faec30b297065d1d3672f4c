@@ -1,0 +1,17 @@
+import org.drools.process.core.datatype.impl.type.StringDataType;
+
+[
+
+  [
+    "name" : "CountryIdWildcard",
+    "parameters" : [
+    	"Country" : new StringDataType()
+    ],
+    "results" : [
+        "Result" : new StringDataType()
+    ],
+    "displayName" : "Country Id Wildcard",
+    "icon" : "",
+  ]
+     
+]

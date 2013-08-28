@@ -1,0 +1,69 @@
+//created on: Aug 3, 2013
+
+dialect "mvel"
+	
+rule "itemWeightRejection"
+    ruleflow-group "itemWeight"
+    when
+        i:Item(weightLb > 5000, state=="in-process")
+    then
+        insert( new Rejection( i, "item too heavy") )
+end
+ 
+rule "calculateItemPriceNonHazardous"
+  ruleflow-group "itemPricing"
+  
+  when
+    i : Item( priceDollars == 0 , w:weightLb > 0, type=="non-hazardous", state=="in-process" )
+  then 
+    i.setPriceDollars( 10*w );
+    i.setState("accepted");
+    update( i );
+    System.out.println("Set Item Price: " + (w*10)); 
+end
+
+rule "calculateItemPriceHazardous"
+  ruleflow-group "itemPricing"
+  
+  when
+    i : Item( priceDollars == 0 , w : weightLb > 0, type=="hazardous-approved", state=="in-process" )
+  then 
+    i.setPriceDollars( 20*w );
+    i.setState("accepted");
+    update( i );
+    System.out.println("Set Hazard Price: " + (20*w));
+end
+
+
+rule "approvalHazardous"
+  ruleflow-group "hazardCheck"
+  when
+    i:Item( type=="hazardous", state=="in-process")
+    not Approval( itemParent==i, type=="hazardous")
+  then
+    insert( new Approval( i ) );
+end
+
+rule "approveHazardous"
+  ruleflow-group "hazardousRubberstamp"
+  
+  when
+    i:Item( type=="hazardous", state=="in-process")
+    a:Approval( itemParent == i, type=="hazardous", state=="waiting" )
+  then
+    a.setState("approved");
+    update( a );
+end
+
+rule "approvedItem"
+  ruleflow-group "updateItem"
+  
+  when
+    i:Item( type=="hazardous", state=="in-process")
+    a:Approval( itemParent==i, state=="approved");
+    not Approval( itemParent==i, state!="approved");
+  then
+    retract(a);
+    i.setType("hazardous-approved");
+    update(i);
+end
