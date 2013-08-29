@@ -113,7 +113,9 @@ All of the default options for saving the JAR will be fine, just save it somewhe
 Next, navigate to **http://localhost:8080/jboss-brms** and login with Username: **admin** and Password: **admin**. 
 This is Guvnor that you are logging into, and it is where you will upload rules and flows.
 
-After logging in, click Knowledge Bases and click **Create New → Upload POJO**. Name it whatever you would like and click next. 
+After logging in, click Knowledge Bases and then click **Create New → Package** and call it **org.railinc.shipping**.
+
+Still in Knowledge Bases, click **Create New → Upload POJO**. Name it whatever you would like and click next. 
 Then find the JAR you just made and upload it.
 
 Upload POJO to Guvnor by jaring all files in **org.railinc.shipping** and going to localhost:8080/jboss-brms and uploading the jar as a POJO.
