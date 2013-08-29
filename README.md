@@ -121,8 +121,18 @@ Upload POJO to Guvnor by jaring all files in **org.railinc.shipping** and going 
 ### Upload Rules and Flows
 
 1. Add Guvnor to JBoss Developer Studio
+  * Click **Window → Open Perspective → Other → Guvnor Repository Exploring**
+  * Then click **File → New → Other → Guvnor → Guvnor repository location**
+  * The default info is fine for Location, Port, and Repository, and for User Name put **admin** and also for Password put **admin**.
+  * Click finish
 2. Upload rules to Guvnor
+  * In JBoss Developer Studio, navigate to **src/main/rules**.
+  * Select all .drl files, right click and go to **Guvnor → Add**
+  * Use your existing Guvnor, click next.
+  * Expand your Guvnor and select **packages/org.railinc.shipping** as the package to upload to.
+  * Click finish
 3. Upload flows to Guvnor
+  * Find files
 4. PNG all flows
 
 ## Build Package in Guvnor
