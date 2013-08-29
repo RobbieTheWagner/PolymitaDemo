@@ -102,7 +102,10 @@ Then we need to update the dependencies and such so everything will work.
 
 Right click the project folder and do **Maven → Update Project**, followed by **Run As → Maven Clean**, and then **Run As → Maven Install**. This should download all the required dependencies.
 
-## Step 7: Upload POJO to Guvnor
+## Step 7: Upload Resources to Guvnor
+
+### Upload POJO Model
+
 Select all the java files under **org.railinc.shipping** and then right click and choose **Export → Java → JAR file**.
 
 All of the default options for saving the JAR will be fine, just save it somewhere you will remember.
@@ -114,6 +117,15 @@ After logging in, click Knowledge Bases and click **Create New → Upload POJO**
 Then find the JAR you just made and upload it.
 
 Upload POJO to Guvnor by jaring all files in **org.railinc.shipping** and going to localhost:8080/jboss-brms and uploading the jar as a POJO.
+
+### Upload Rules and Flows
+
+1. Add Guvnor to JBoss Developer Studio
+2. Upload rules to Guvnor
+3. Upload flows to Guvnor
+4. PNG all flows
+
+## Build Package in Guvnor
 
 ## Step 8: Add Guvnor to JBoss Developer Studio 
 Create Guvnor repository in JBoss Developer Studio. Then add all rules and flows to the Guvnor.
