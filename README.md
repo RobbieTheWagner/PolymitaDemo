@@ -52,6 +52,8 @@ sh ~/Downloads/PolymitaDemo/init.sh
 4. Set Home Directory to ~Downloads/PolymitaDemo/target/jboss-eap-6.1.
 5. Click Finish.
 
+### Install SOA Tools
+
 Select **Help → Install New Software** and add the SOA Tools update site **https://devstudio.jboss.com/updates/5.0/central/soa-tooling/**
 
 Select **Business Rules Tooling** and **SOA and Data Services Tooling** (all sub-menu items will be selected) and proceed through installation and restart JBoss Developer Studio to complete the installation. 
