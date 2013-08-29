@@ -115,5 +115,5 @@ Then find the JAR you just made and upload it.
 
 Upload POJO to Guvnor by jaring all files in **org.railinc.shipping** and going to localhost:8080/jboss-brms and uploading the jar as a POJO.
 
-## Step 8: Add Guvnor to Jboss Developer Studio 
+## Step 8: Add Guvnor to JBoss Developer Studio 
 Create Guvnor repository in JBoss Developer Studio. Then add all rules and flows to the Guvnor.
