@@ -51,12 +51,14 @@ You will be told to restart JBoss Developer Studio for the changes to take effec
 
 ## Step 6: Define Runtimes
 
-Step 6: Import the project into JBoss Developer Studio by clicking File → Import and choosing General → Existing Projects into Workspace.
+## Step 7: Import the Project
+Import the project into JBoss Developer Studio by clicking File → Import and choosing General → Existing Projects into Workspace.
 
 Then we need to update the dependencies and such so everything will work.
 
 Right click the project folder and do **Maven → Update Project**, followed by **Run As → Maven Clean**, and then **Run As → Maven Install**. This should download all the required dependencies.
 
-Step 7: Upload POJO to Guvnor by jaring all files in org.railinc.shipping and going to localhost:8080/jboss-brms and uploading the jar as a POJO.
+## Step 8: Upload POJO to Guvnor
+Upload POJO to Guvnor by jaring all files in org.railinc.shipping and going to localhost:8080/jboss-brms and uploading the jar as a POJO.
 
-Step 8: Create Guvnor repository in JBoss Developer Studio. Then add all rules and flows to the Guvnor.
+## Step 9: Create Guvnor repository in JBoss Developer Studio. Then add all rules and flows to the Guvnor.
