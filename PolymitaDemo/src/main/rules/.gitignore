@@ -1,1 +1,3 @@
-.guvnorinfo/.bolRules.drl
+.*
+!/.gitignore
+.guvnorinfo/
