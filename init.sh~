@@ -169,14 +169,6 @@ echo "  - enabling demo accounts role setup in brms-roles.properties file..."
 echo
 cp support/brms-roles.properties $SERVER_CONF
 
-echo "  - enabling demo accounts logins for dashbuilder in bam-users.properties file..."
-echo
-cp support/bam-users.properties $SERVER_CONF
-
-echo "  - enabling demo accounts for dashbuilder bam-roles.properties file..."
-echo
-cp support/bam-roles.properties $SERVER_CONF
-
 echo "  - adding dodeploy files to deploy all brms components..."
 echo 
 touch $SERVER_DIR/business-central-server.war.dodeploy
