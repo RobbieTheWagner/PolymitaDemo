@@ -46,11 +46,19 @@ sh ~/Downloads/PolymitaDemo/init.sh
 
 ### Setup EAP 6 Server
 
-1. Select the Servers view. If it is currently not open, select Show View --> Other... from the Window menu and search for the Servers view.
-2. Click new server wizard
-3. Select JBoss Enterprise Application Platform 6.x. Click Next.
-4. Set Home Directory to ~Downloads/PolymitaDemo/target/jboss-eap-6.1.
-5. Click Finish.
+1. Select the Servers view. If it is currently not open, select **Window → Show View → Other** and search for the Servers view.
+2. Right click the white space in the Servers view and choose **New → Server**.
+3. Select JBoss Enterprise Application Platform 6.1.
+4. Set the following values:
+  * Server's host name: **localhost**
+  * Server Name: **JBoss EAP 6.1**
+  * For Server Runtime Environment click **Add** Then set the following:
+  * Name: **JBoss EAP 6.1 Runtime**
+  * Home Directory: **~/Downloads/PolymitaDemo/target/jboss-eap6.1**
+  * JRE: Choose 1.7.x, whichever version of Java 7 you prefer.
+  * Configuration file: **standalone.xml**.
+  * **Note:** If this runtime was automatically detected earlier and created, you may just use it instead of making a new one.
+7. Click Finish.
 
 ### Install SOA Tools
 
