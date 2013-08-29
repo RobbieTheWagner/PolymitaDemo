@@ -95,14 +95,15 @@ and select OK to close the Preferences dialog window.
 6. You will be told to restart JBoss Developer Studio for the changes to take effect, do this now.
 
 ## Step 6: Import the Project
-Import the project into JBoss Developer Studio by clicking File → Import and choosing General → Existing Projects into Workspace.
+Import the project into JBoss Developer Studio by clicking **File → Import** and choosing **General → Existing Projects into Workspace**.
+Then navigate to **~/Downloads/PolymitaDemo/PolymitaDemo** as the source folder. (Note the double PolymitaDemo/PolymitaDemo)
 
 Then we need to update the dependencies and such so everything will work.
 
 Right click the project folder and do **Maven → Update Project**, followed by **Run As → Maven Clean**, and then **Run As → Maven Install**. This should download all the required dependencies.
 
 ## Step 7: Upload POJO to Guvnor
-Upload POJO to Guvnor by jaring all files in org.railinc.shipping and going to localhost:8080/jboss-brms and uploading the jar as a POJO.
+Upload POJO to Guvnor by jaring all files in **org.railinc.shipping** and going to localhost:8080/jboss-brms and uploading the jar as a POJO.
 
 ## Step 8: Add Guvnor to Jboss Developer Studio 
 Create Guvnor repository in JBoss Developer Studio. Then add all rules and flows to the Guvnor.
