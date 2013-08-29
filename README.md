@@ -44,9 +44,9 @@ sh ~/Downloads/PolymitaDemo/init.sh
 
 ## Step 5: Setup Server and Define Runtimes
 
-**Setup EAP 6 Server**
-1. Select the Servers view
-If it is currently not open, select Show View --> Other... from the Window menu and search for the Servers view.
+### Setup EAP 6 Server
+
+1. Select the Servers view. If it is currently not open, select Show View --> Other... from the Window menu and search for the Servers view.
 2. Click new server wizard
 3. Select JBoss Enterprise Application Platform 6.x. Click Next.
 4. Set Home Directory to ~Downloads/PolymitaDemo/target/jboss-eap-6.1.
