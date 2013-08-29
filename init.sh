@@ -21,24 +21,24 @@ VERSION=5.3.1
 clear 
 
 echo
-echo "#########################################################"
-echo "##                                                     ##"   
-echo "##  Setting up the ${DEMO}  ##"
-echo "##                                                     ##"   
-echo "##                                                     ##"   
-echo "##             ####   ####    #   #    ###             ##"
-echo "##             #   #  #   #  # # # #  #                ##"
-echo "##             ####   ####   #  #  #   ##              ##"
-echo "##             #   #  #  #   #     #     #             ##"
-echo "##             ####   #   #  #     #  ###              ##"
-echo "##                                                     ##"   
-echo "##                                                     ##"   
-echo "##  brought to you by,                                 ##"   
-echo "##             ${AUTHORS}        ##"
-echo "##                                                     ##"   
-echo "##  ${PROJECT}   ##"
-echo "##                                                     ##"   
-echo "#########################################################"
+echo "#########################################################################"
+echo "##                                                                     ##"   
+echo "##  Setting up the ${DEMO}                  ##"
+echo "##                                                                     ##"   
+echo "##                                                                     ##"   
+echo "##                     ####   ####    #   #    ###                     ##"
+echo "##                     #   #  #   #  # # # #  #                        ##"
+echo "##                     ####   ####   #  #  #   ##                      ##"
+echo "##                     #   #  #  #   #     #     #                     ##"
+echo "##                     ####   #   #  #     #  ###                      ##"
+echo "##                                                                     ##"   
+echo "##                                                                     ##"   
+echo "##  brought to you by,                                                 ##"   
+echo "##  ${AUTHORS}    ##"
+echo "##                                                                     ##"   
+echo "##  ${PROJECT}                         ##"
+echo "##                                                                     ##"   
+echo "#########################################################################"
 echo
 
 command -v mvn -q >/dev/null 2>&1 || { echo >&2 "Maven is required but not installed yet... aborting."; exit 1; }
@@ -291,9 +291,7 @@ echo
 echo These are setup to point maven to the local JBoss EAP6 maven artefacts in the /tmp directory
 echo repository just extracted for you.
 echo 
-echo ============================================================
-cat README.md
-echo ============================================================
+echo "Please see README.md for more instructions!"
 echo
 echo
 echo "${DEMO} Setup Complete."
