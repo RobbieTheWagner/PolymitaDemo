@@ -14,11 +14,10 @@ git clone
 Step 2: Download the following from the JBoss Customer Portal at access.redhat.com
 
  **EAP6 (jboss-eap-6.1.0.zip)**
+ 
  **BRMS deployable (brms-p-5.3.1.GA-deployable-ee6.zip)**
 
-Copy these files to the installs directory in the root of this repo.
-
-Ensure that these files are executable by running:
+Copy these files to the installs directory in the root of this repo and ensure that they are executable by running:
 
 ```bash
 chmod +x ~/Downloads/PolymitaDemo/installs/jboss-eap-6.1.0.zip
