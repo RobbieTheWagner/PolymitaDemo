@@ -29,6 +29,12 @@ Step 4: Copy the settings.xml file in the root of this repo to your ~/.m2 folder
 cp ~/Downloads/PolymitaDemo/settings.xml ~/.m2/
 ```
 
+Then you are ready to build the project. Run the init.sh script in the root of your repository folder and it will build.
+
+```bash
+sh ~/Downloads/PolymitaDemo/init.sh
+```
+
 Step 5: Import the project into JBoss Developer Studio and update everything. Right click the project folder and do Maven -> Update Project, followed by Run As -> Maven Clean, and then Run As -> Maven Install. This should download all the required dependencies.
 
 Step 6: Upload POJO to Guvnor by jaring all files in org.railinc.shipping and going to localhost:8080/jboss-brms and uploading the jar as a POJO.
