@@ -135,8 +135,6 @@ After logging in, click Knowledge Bases and then click **Create New → New Pack
 Still in Knowledge Bases, click **Create New → Upload POJO**. Name it whatever you would like and click next. 
 Then find the JAR you just made and upload it.
 
-Upload POJO to Guvnor by jaring all files in **org.railinc.shipping** and going to localhost:8080/jboss-brms and uploading the jar as a POJO.
-
 ### Upload Rules and Flows
 
 1. Add Guvnor to JBoss Developer Studio
