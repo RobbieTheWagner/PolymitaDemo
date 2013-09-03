@@ -138,7 +138,7 @@ Then we need to update the dependencies and such so everything will work.
 
 Right click the project folder and do **Maven → Update Project**, followed by **Run As → Maven Clean**, and then **Run As → Maven Install**. This should download all the required dependencies.
 
-## Step 7: Upload Resources to Guvnor
+## <a name="step7"/> Step 7: Upload Resources to Guvnor
 
 ### Upload POJO Model
 
