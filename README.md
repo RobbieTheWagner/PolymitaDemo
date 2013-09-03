@@ -173,14 +173,21 @@ Then find the JAR you just made and upload it.
   * Use your existing Guvnor, click next.
   * Expand your Guvnor and select **packages/org.railinc.shipping** as the package to upload to.
   * Click finish
-4. PNG all flows
+4. Add the item form
+  * In Guvnor, navigate to **Knowledge Bases → org → railinc → shipping**.
+  * Under the Assets tab open the processes dropdown and open **org.railinc.shipping.ItemFlow**
+  * In the ItemFlow window click the task called "Hazard Human Check"
+  * Click on the green shirted man directly above the task and a form editing window pops up
+  * In JBoss Developer Studio open up **src/main/resources/humanHazardCheck.html**
+  * copy-paste the contents into the process form window in guvnor and click save.
+5. PNG all flows
   * Log in to Guvnor at **http://localhost:8080/jboss-brms** with the Username: **admin** and Password: **admin**.
   * Click **Knowledge Bases → org → railinc → shipping** to navigate to the package.
   * Now click **Assets → Processes** and click **Open** next to each process. This will open each one in a tab at the top.
   * Now click each tab, and the flow will appear for that process.
   * While viewing each flow, click the PNG button at the bottom to generate images needed by BRMS. You do not need to save the generated PNG file, it will save the images in assets by itself.
   * After each PNG is generated, click **File → Save Changes**.
-5. Build the package
+6. Build the package
   * In Guvnor, navigate to **Knowledge Bases → org → railinc → shipping**.
   * Then click **Edit**.
   * Click the **Validate Configuration** button, followed by the **Build Package** button and fix any errors that may arise.
