@@ -27,7 +27,11 @@ chmod +x ~/Downloads/PolymitaDemo/installs/brms-p-5.3.1.GA-deployable-ee6.zip
 ```
 
 ## Step 3: Install Maven
-Make sure you have Maven installed on your machine. You can find instructions on how to install it online.
+Make sure you have Maven installed on your machine.
+
+If you do not have it installed, you can find instructions on how to install it online. 
+One specific source is [here](http://maven.apache.org/guides/getting-started/maven-in-five-minutes.html), but 
+there are other tutorials you can find.
 
 ## Step 4: Transfer Maven settings.xml and Build Project
 Copy the settings.xml file in the root of this repo to your **~/.m2** folder.
