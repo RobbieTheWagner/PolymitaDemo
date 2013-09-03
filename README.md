@@ -172,4 +172,7 @@ Then find the JAR you just made and upload it.
 2. Then select the runtime you previously set up, and wait for everything to start up.
 3. You should then be able to navigate to **http://localhost:8080/PolymitaDemo** and see the app!
 
-#### Note: when you make changes, you must click the red stop button to stop the server, then do **Run As → Run on Server** again to redeploy.
+## Notes 
+* When you make changes, you must click the red stop button to stop the server, then do **Run As → Run on Server** again to redeploy.
+* You must PNG a flow after any changes for the Guvnor to realize the changes.
+* You must build your package again after all changes to make the changes go through.
