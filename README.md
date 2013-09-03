@@ -149,10 +149,25 @@ Then find the JAR you just made and upload it.
   * Expand your Guvnor and select **packages/org.railinc.shipping** as the package to upload to.
   * Click finish
 3. Upload flows to Guvnor
-  * Find files
+  * In JBoss Developer Studio, navigate to **src/main/resources**.
+  * Select all .bpmn2 files, right click and go to **Guvnor → Add**
+  * Use your existing Guvnor, click next.
+  * Expand your Guvnor and select **packages/org.railinc.shipping** as the package to upload to.
+  * Click finish
 4. PNG all flows
+  * Log in to Guvnor at **http://localhost:8080/jboss-brms** with the Username: **admin** and Password: **admin**.
+  * Click **Knowledge Bases → org → railinc → shipping** to navigate to the package.
+  * Now click **Assets → Processes** and click **Open** next to each process. This will open each one in a tab at the top.
+  * Now click each tab, and the flow will appear for that process.
+  * While viewing each flow, click the PNG button at the bottom to generate images needed by BRMS. You do not need to save the generated PNG file, it will save the images in assets by itself.
+  * After each PNG is generated, click **File → Save Changes**.
+5. Build the package
+  * In Guvnor, navigate to **Knowledge Bases → org → railinc → shipping**.
+  * Then click **Edit**.
+  * Click the **Validate Configuration** button, followed by the **Build Package** button and fix any errors that may arise.
+  * Click **File → Save Changes** to ensure the package that was built is saved.
 
-## Build Package in Guvnor
-
-## Step 8: Add Guvnor to JBoss Developer Studio 
-Create Guvnor repository in JBoss Developer Studio. Then add all rules and flows to the Guvnor.
+## Step 8: Run the PolymitaDemo app
+1. In JBoss Developer Studio, right click the project and choose **Run As → Run on Server**. 
+2. Then select the runtime you previously set up, and wait for everything to start up.
+3. You should then be able to navigate to **http://localhost:8080/PolymitaDemo** and see the app!
