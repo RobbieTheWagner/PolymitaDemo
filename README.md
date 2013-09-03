@@ -88,7 +88,7 @@ You will be told to restart JBoss Developer Studio for the changes to take effec
 ### Detect and add a BRMS 5.3.1 runtime environment
 
 1. Select **Window → Preferences**.
-2. Click the plus sign to expand **JBoss Tools** and then select **JBoss Tool Runtime Detection**.
+2. Click the plus sign to expand **JBoss Tools** and then select **JBoss Runtime Detection**.
 3. Select the **Add** button and navigate to the **~/Downloads/PolymitaDemo/target** folder, then select OK.
 4. The jboss-eap-6.1 runtime created earlier should have been found and selected. If so, select OK.
 5. Select OK again to close the Preferences dialog window.
