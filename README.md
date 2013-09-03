@@ -28,6 +28,19 @@ chmod +x ~/Downloads/PolymitaDemo/installs/brms-p-5.3.1.GA-deployable-ee6.zip
 
 ## Step 3: Install Maven
 Make sure you have Maven installed on your machine.
+```bash
+mvn --version
+```
+
+If you have it installed, you will see output similar to:
+```bash
+Apache Maven 3.0.3 (r1075438; 2011-02-28 12:31:09-0500)
+Maven home: /usr/share/maven
+Java version: 1.6.0_51, vendor: Apple Inc.
+Java home: /System/Library/Java/JavaVirtualMachines/1.6.0.jdk/Contents/Home
+Default locale: en_US, platform encoding: MacRoman
+OS name: "mac os x", version: "10.8.4", arch: "x86_64", family: "mac"
+```
 
 If you do not have it installed, you can find instructions on how to install it online. 
 One specific source is [here](http://maven.apache.org/guides/getting-started/maven-in-five-minutes.html), but 
