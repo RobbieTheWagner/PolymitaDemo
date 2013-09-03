@@ -171,3 +171,5 @@ Then find the JAR you just made and upload it.
 1. In JBoss Developer Studio, right click the project and choose **Run As → Run on Server**. 
 2. Then select the runtime you previously set up, and wait for everything to start up.
 3. You should then be able to navigate to **http://localhost:8080/PolymitaDemo** and see the app!
+
+#### Note: when you make changes, you must click the red stop button to stop the server, then do **Run As → Run on Server** again to redeploy.
