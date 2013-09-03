@@ -3,16 +3,35 @@ PolymitaDemo
 
 A demo using BRMS, BPM, Polymita, and JBoss
 
+## Table of Contents
+[Step 1: Clone The Repo](#step1) 
+
+[Step 2: Download Source .zip Files](#step2)
+
+[Step 3: Install Maven](#step3)
+
+[Step 4: Transfer Maven settings.xml and Build Project](#step4)
+
+[Step 5: Setup Server and Define Runtimes](#step5)
+
+[Step 6: Import the Project](#step6)
+
+[Step 7: Upload Resources to Guvnor](#step7)
+
+[Step 8: Run the PolymitaDemo app](#step8)
+
+[Notes](#notes)
+
 Installation Instructions:
 
-## Step 1: Clone The Repo
+## <a name="step1"/> Step 1: Clone The Repo
 Clone this repo into your **~/Downloads** folder.
 ```bash
 cd ~/Downloads
 git clone https://github.com/rwwagner90/PolymitaDemo.git
 ```
 
-## Step 2: Download Source .zip Files 
+## <a name="step2"/> Step 2: Download Source .zip Files 
 Download the following from the JBoss Customer Portal at access.redhat.com
 
  **EAP6 (jboss-eap-6.1.0.zip)**
@@ -26,7 +45,7 @@ chmod +x ~/Downloads/PolymitaDemo/installs/jboss-eap-6.1.0.zip
 chmod +x ~/Downloads/PolymitaDemo/installs/brms-p-5.3.1.GA-deployable-ee6.zip
 ```
 
-## Step 3: Install Maven
+## <a name="step3"/> Step 3: Install Maven
 Make sure you have Maven installed on your machine.
 ```bash
 mvn --version
@@ -46,7 +65,7 @@ If you do not have it installed, you can find instructions on how to install it 
 One specific source is [here](http://maven.apache.org/guides/getting-started/maven-in-five-minutes.html), but 
 there are other tutorials you can find.
 
-## Step 4: Transfer Maven settings.xml and Build Project
+## <a name="step4"/> Step 4: Transfer Maven settings.xml and Build Project
 Copy the settings.xml file in the root of this repo to your **~/.m2** folder.
 
 ```bash
@@ -59,7 +78,7 @@ Then you are ready to build the project. Run the init.sh script in the root of y
 sh ~/Downloads/PolymitaDemo/init.sh
 ```
 
-## Step 5: Setup Server and Define Runtimes
+## <a name="step5"/> Step 5: Setup Server and Define Runtimes
 
 ### Setup EAP 6 Server
 
@@ -111,7 +130,7 @@ You will be told to restart JBoss Developer Studio for the changes to take effec
 and select OK to close the Preferences dialog window.
 6. You will be told to restart JBoss Developer Studio for the changes to take effect, do this now.
 
-## Step 6: Import the Project
+## <a name="step6"/> Step 6: Import the Project
 Import the project into JBoss Developer Studio by clicking **File → Import** and choosing **General → Existing Projects into Workspace**.
 Then navigate to **~/Downloads/PolymitaDemo/PolymitaDemo** as the source folder. (Note the double PolymitaDemo/PolymitaDemo)
 
@@ -167,12 +186,12 @@ Then find the JAR you just made and upload it.
   * Click the **Validate Configuration** button, followed by the **Build Package** button and fix any errors that may arise.
   * Click **File → Save Changes** to ensure the package that was built is saved.
 
-## Step 8: Run the PolymitaDemo app
+## <a name="step8"/> Step 8: Run the PolymitaDemo app
 1. In JBoss Developer Studio, right click the project and choose **Run As → Run on Server**. 
 2. Then select the runtime you previously set up, and wait for everything to start up.
 3. You should then be able to navigate to **http://localhost:8080/PolymitaDemo** and see the app!
 
-## Notes 
+## <a name="notes"/> Notes 
 * When you make changes, you must click the red stop button to stop the server, then do **Run As → Run on Server** again to redeploy.
 * You must PNG a flow after any changes for the Guvnor to realize the changes.
 * You must build your package again after all changes to make the changes go through.
