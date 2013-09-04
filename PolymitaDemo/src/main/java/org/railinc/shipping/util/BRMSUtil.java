@@ -1,22 +1,32 @@
 package org.railinc.shipping.util;
 
+import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
+import java.util.UUID;
 
 import javax.annotation.PostConstruct;
 import javax.ejb.Singleton;
 
+import org.drools.SystemEventListenerFactory;
 import org.drools.agent.KnowledgeAgent;
 import org.drools.agent.KnowledgeAgentFactory;
 import org.drools.builder.ResourceType;
+import org.drools.impl.EnvironmentFactory;
 import org.drools.io.Resource;
 import org.drools.io.ResourceChangeScannerConfiguration;
 import org.drools.io.ResourceFactory;
 import org.drools.io.impl.ChangeSetImpl;
 import org.drools.io.impl.UrlResource;
+import org.drools.runtime.Environment;
+import org.drools.runtime.EnvironmentName;
 import org.drools.runtime.StatefulKnowledgeSession;
 import org.drools.runtime.StatelessKnowledgeSession;
+import org.jbpm.task.service.TaskClient;
+import org.jbpm.task.service.hornetq.CommandBasedHornetQWSHumanTaskHandler;
+import org.jbpm.task.service.hornetq.HornetQTaskClientConnector;
+import org.jbpm.task.service.hornetq.HornetQTaskClientHandler;
 import org.railinc.shipping.Container;
 import org.railinc.shipping.Shipment;
 
@@ -30,6 +40,10 @@ import org.railinc.shipping.Shipment;
 public class BRMSUtil {
 
 	private KnowledgeAgent kagent = null;
+	private StatefulKnowledgeSession ksession = null;
+	private TaskClient client = null;
+	private HornetQTaskClientConnector clientConnector = null;
+	HornetQTaskClientHandler clientHandler = null;
 
 	public BRMSUtil() {
 	}
@@ -55,19 +69,37 @@ public class BRMSUtil {
 		ResourceFactory.getResourceChangeNotifierService().start();
 
 		ResourceFactory.getResourceChangeScannerService().start();
+		
+		clientHandler = new HornetQTaskClientHandler(
+				SystemEventListenerFactory.getSystemEventListener());
+		
+		
+		clientConnector = new HornetQTaskClientConnector(
+				"Human Task" + UUID.randomUUID(), clientHandler);
+		
+		client = new TaskClient(clientConnector);
+		client.connect("127.0.0.1", 5153);
+		
 
 	}
 
 	public StatelessKnowledgeSession getStatelessSession() {
 
 		return kagent.getKnowledgeBase().newStatelessKnowledgeSession();
-
 	}
-
+	
+	@SuppressWarnings("deprecation")
 	public StatefulKnowledgeSession getStatefulSession() {
-
-		return kagent.getKnowledgeBase().newStatefulKnowledgeSession();
-
+		ksession = kagent.getKnowledgeBase().newStatefulKnowledgeSession();
+		
+		CommandBasedHornetQWSHumanTaskHandler handler = new CommandBasedHornetQWSHumanTaskHandler(
+				ksession);
+		
+		handler.setClient(client);
+		
+		ksession.getWorkItemManager().registerWorkItemHandler("Human Task",
+				handler);
+		return ksession;
 	}
 
 	public void stopResourceChangeScannerServices() {

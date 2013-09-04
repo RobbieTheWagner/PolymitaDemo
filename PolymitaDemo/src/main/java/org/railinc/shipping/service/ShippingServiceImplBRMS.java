@@ -6,6 +6,8 @@ import javax.ejb.Stateful;
 import javax.inject.Inject;
 
 import org.drools.runtime.StatefulKnowledgeSession;
+import org.drools.runtime.process.ProcessInstance;
+import org.mortbay.log.Log;
 import org.railinc.shipping.BillOfLading;
 import org.railinc.shipping.Contact;
 import org.railinc.shipping.Shipment;
@@ -34,11 +36,12 @@ public class ShippingServiceImplBRMS implements ShippingService, Serializable {
 
 	}
 
-	public void priceShipment(Shipment s) {
+	public StatefulKnowledgeSession priceShipment(Shipment s) {
 
 		if (s != null) {
 
 			StatefulKnowledgeSession ksession = null;
+			ProcessInstance masterFlow = null;
 
 			try {
 
@@ -71,9 +74,12 @@ public class ShippingServiceImplBRMS implements ShippingService, Serializable {
 
 					}
 
-					ksession.startProcess("org.railinc.shipping.MasterFlow");
+					masterFlow = ksession.startProcess("org.railinc.shipping.MasterFlow");
 
 					ksession.fireAllRules();
+
+					System.out.println("processState is " + masterFlow.getState());
+
 
 				}
 
@@ -94,15 +100,15 @@ public class ShippingServiceImplBRMS implements ShippingService, Serializable {
 
 				System.out.println("BOL price: $" + s.getBillOfLadingParent().getPriceDollars());
 
-			} finally {
-
-				if (ksession != null) {
-
-					ksession.dispose();
-
-				}
+			} catch(Exception e){
+				Log.debug("Something went wrong with pricing the shipment");
+				Log.debug(e);
 			}
+			
+			return ksession;
 		}
+		//Only happens when the shipment is null
+		return null;
 
 	}
 

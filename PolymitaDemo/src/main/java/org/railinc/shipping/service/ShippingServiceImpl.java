@@ -5,13 +5,23 @@ import javax.ejb.Stateless;
 import javax.enterprise.inject.Alternative;
 import javax.inject.Inject;
 
+import org.drools.runtime.StatefulKnowledgeSession;
 import org.railinc.shipping.Shipment;
 
 @Alternative
 @Stateless
 public class ShippingServiceImpl implements ShippingService {
 	
-	public void priceShipment(Shipment s) {
+	@Inject
+	ShippingServiceOld ss;
+	
+	@Inject
+	PromoService ps;
+	
+	@Inject
+	ProductService pp;
+	
+	public StatefulKnowledgeSession priceShipment(Shipment s) {
 						
 		/*if ( s != null ) {
 			
@@ -37,7 +47,7 @@ public class ShippingServiceImpl implements ShippingService {
 			sc.setCartTotal(sc.getCartItemTotal() + sc.getShippingTotal());
 		
 		}*/
-		
+		return null;
 	}
 
 	/*private void initShoppingCartForPricing(ShoppingCart sc) {
