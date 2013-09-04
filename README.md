@@ -143,6 +143,9 @@ Then we need to update the dependencies and such so everything will work.
 
 Right click the project folder and do **Maven → Update Project**, followed by **Run As → Maven Clean**, and then **Run As → Maven Install**. This should download all the required dependencies.
 
+Now that everything is updated, start the server so that Guvnor will be running for the next step. To do this, right
+click the project and choose **Run As → Run on Server** and choose the **JBoss EAP 6.1** server and click finish.
+
 ## <a name="step7"/> Step 7: Upload Resources to Guvnor
 
 ### Upload POJO Model
@@ -154,7 +157,9 @@ All of the default options for saving the JAR will be fine, just save it somewhe
 Next, navigate to **http://localhost:8080/jboss-brms** and login with Username: **admin** and Password: **admin**. 
 This is Guvnor that you are logging into, and it is where you will upload rules and flows.
 
-After logging in, click Knowledge Bases and then click **Create New → New Package** and call it **org.railinc.shipping**.
+After logging in, it will ask you to import sample data because it is a new repository. **DO NOT** do this!
+
+Then click Knowledge Bases and then click **Create New → New Package** and call it **org.railinc.shipping**.
 
 Still in Knowledge Bases, click **Create New → Upload POJO**. Name it whatever you would like and click next. 
 Then find the JAR you just made and upload it.
