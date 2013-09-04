@@ -277,6 +277,24 @@ rm jboss-jbpm-engine.zip
 echo Installation of binaries "for" BRMS $MVN_VERSION complete.
 echo
 
+
+echo "######################################################################"
+echo "##                                                                  ##"
+echo "## For persistence to work YOU MUST have POSTGRES RUNNING on        ##"
+echo "##     localhost:5432 with:                                         ##"
+echo "##              - Database name: polymita                           ##"
+echo "##              - Username: polymita                                ##"
+echo "##              - password: polymita                                ##"
+echo "##                                                                  ##"
+echo "######################################################################"
+echo
+
+echo Configuring persistence "for" business central server
+cp $SUPPORT_DIR/business-central-persistence.xml $SERVER_DIR/business-central-server.war/WEB-INF/classes/META-INF/persistence.xml
+
+echo Configuring persistence "for" human tasks
+cp $SUPPORT_DIR/human-task-persistence.xml $SERVER_DIR/jbpm-human-task.war/WEB-INF/classes/META-INF/persistence.xml
+
 echo
 echo "######################################################################"
 echo "##                                                                  ##"
