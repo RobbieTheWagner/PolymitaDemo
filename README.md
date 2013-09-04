@@ -199,15 +199,25 @@ Then find the JAR you just made and upload it.
 1. Go [here](http://www.postgresql.org/download/) and download the PostgreSQL that works with your system and follow the instructions to get it running.
 2. Start the PostgreSQL service with the template1 database and create a polymita user for the polymita table.
 
+In bash, start psql by running:
 ```bash
 psql template1
 ```
 
+Execute the following once you are running psql.
 ```sql
 CREATE USER polymita WITH PASSWORD 'polymita';
 DROP DATABASE IF EXISTS polymita;
 CREATE DATABASE polymita;
+ALTER DATABASE polymita OWNER TO polymita; 
 ```
+
+Now start the psql service. If you are on linux, use the following command:
+```bash
+sudo service postgresql start
+```
+
+If you are not on linux, look around the documentation of the PostgreSQL instance you installed for how to start it.
 
 ## <a name="step9"/> Step 9: Run the PolymitaDemo app
 1. In JBoss Developer Studio, right click the project and choose **Run As → Run on Server**. 
@@ -218,3 +228,4 @@ CREATE DATABASE polymita;
 * When you make changes, you must click the red stop button to stop the server, then do **Run As → Run on Server** again to redeploy.
 * You must PNG a flow after any changes for the Guvnor to realize the changes.
 * You must build your package again after all changes to make the changes go through.
+* You must have psql running whenever running the application, so you can access the databases.
