@@ -1,0 +1,14 @@
+users = [ 'darth'  : new User('darth'),
+          'bobba'  : new User( 'bobba'),     'jabba'      : new User('jabba'),
+          'dalai'  : new User('dalai'),     'christoper' : new User('christoper'),
+          'stuart' : new User('stuart'),  'jane'       : new User('jane'),
+          'peter'  : new User('peter'),   'steve'      : new User('steve'),
+          'sly'    : new User('sly'),    'liz'        : new User('liz'),
+          'bruce'  : new User('bruce' ),   'tony'       : new User('tony'),
+          'luke'   : new User('luke'),      'admin'      : new User('Administrator'),
+          'krisv'  : new User('krisv'),          'john'       : new User('john'),
+          'mary'   : new User('mary'),           'sales'      : new User('sales')
+        ];
+
+return users;
+
