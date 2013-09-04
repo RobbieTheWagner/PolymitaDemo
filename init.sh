@@ -289,15 +289,20 @@ echo "##                                                                  ##"
 echo "######################################################################"
 echo
 
-echo Configuring persistence "for" business central server
+echo Configuring persistence "for" business central server...
 cp $SUPPORT_DIR/business-central-persistence.xml $SERVER_DIR/business-central-server.war/WEB-INF/classes/META-INF/persistence.xml
 
-echo Configuring persistence "for" human tasks
+echo Configuring persistence "for" human tasks...
 cp $SUPPORT_DIR/human-task-persistence.xml $SERVER_DIR/jbpm-human-task.war/WEB-INF/classes/META-INF/persistence.xml
 
-echo Configuring business central users
+echo Configuring business central users...
 cp $SUPPORT_DIR/BRMSUsers.mvel $SERVER_DIR/jbpm-human-task.war/WEB-INF/class/org/jbpm/task/servlet/BRMSUsers.mvel
 cp $SUPPORT_DIR/BRMSGroups.mvel $SERVER_DIR/jbpm-human-task.war/WEB-INF/class/org/jbpm/task/servlet/BRMSGroups.mvel
+
+echo Installing postgres jdbc driver as a module...
+mkdir -p $JBOSS_HOME/modules/system/layers/base/org/postgresql/main/
+cp $SUPPORT_DIR/postgresql.jar $JBOSS_HOME/modules/system/layers/base/org/postgresql/main/postgresql.jar
+cp $SUPPORT_DIR/postgresql-module.xml $JBOSS_HOME/modules/system/layers/base/org/postgresql/main/module.xml
 
 echo
 echo "######################################################################"
