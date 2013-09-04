@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<bpmn2:definitions xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://www.omg.org/bpmn20" xmlns:bpmn2="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" xmlns:drools="http://www.jboss.org/drools" id="_2F8ToAtHEeOzPek9wNsPug" xsi:schemaLocation="http://www.omg.org/spec/BPMN/20100524/MODEL BPMN20.xsd" targetNamespace="http://www.omg.org/bpmn20">
+<bpmn2:definitions xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://www.omg.org/bpmn20" xmlns:bpmn2="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" xmlns:drools="http://www.jboss.org/drools" id="_LKUzsAwJEeOZUcir1aIAfg" xsi:schemaLocation="http://www.omg.org/spec/BPMN/20100524/MODEL BPMN20.xsd" targetNamespace="http://www.omg.org/bpmn20">
   <bpmn2:process id="org.railinc.shipping.BOLFlow" drools:packageName="org.railinc.shipping" name="BOLFlow" isExecutable="true">
     <bpmn2:startEvent id="_D393410B-9D1C-4E8A-BE1D-9388F589EB79" drools:bgcolor="#9acd32" drools:selectable="true" name="">
       <bpmn2:outgoing>_ACCEAF20-9DED-45BB-A3B6-2BB0F025F5F0</bpmn2:outgoing>
@@ -19,31 +19,31 @@
     </bpmn2:endEvent>
     <bpmn2:sequenceFlow id="_5839AB80-8E7D-4DED-8348-F95A844F8037" drools:bgcolor="#000000" drools:selectable="true" sourceRef="_D3667F1F-DEC3-47F3-8AE8-6E285E8083EF" targetRef="_B5AFC951-26F2-4E92-AE3E-98FB0288E4C0"/>
   </bpmn2:process>
-  <bpmndi:BPMNDiagram id="_2F8ToQtHEeOzPek9wNsPug">
-    <bpmndi:BPMNPlane id="_2F8TogtHEeOzPek9wNsPug" bpmnElement="org.railinc.shipping.BOLFlow">
-      <bpmndi:BPMNShape id="_2F8TowtHEeOzPek9wNsPug" bpmnElement="_D393410B-9D1C-4E8A-BE1D-9388F589EB79">
+  <bpmndi:BPMNDiagram id="_LKVawAwJEeOZUcir1aIAfg">
+    <bpmndi:BPMNPlane id="_LKVawQwJEeOZUcir1aIAfg" bpmnElement="org.railinc.shipping.BOLFlow">
+      <bpmndi:BPMNShape id="_LKVawgwJEeOZUcir1aIAfg" bpmnElement="_D393410B-9D1C-4E8A-BE1D-9388F589EB79">
         <dc:Bounds height="30.0" width="30.0" x="105.0" y="165.0"/>
       </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="_2F8TpAtHEeOzPek9wNsPug" bpmnElement="_65D88004-A300-42A8-87BD-144FED242F15">
+      <bpmndi:BPMNShape id="_LKVawwwJEeOZUcir1aIAfg" bpmnElement="_65D88004-A300-42A8-87BD-144FED242F15">
         <dc:Bounds height="80.0" width="100.0" x="180.0" y="140.0"/>
       </bpmndi:BPMNShape>
-      <bpmndi:BPMNEdge id="_2F8TpQtHEeOzPek9wNsPug" bpmnElement="_ACCEAF20-9DED-45BB-A3B6-2BB0F025F5F0">
+      <bpmndi:BPMNEdge id="_LKVaxAwJEeOZUcir1aIAfg" bpmnElement="_ACCEAF20-9DED-45BB-A3B6-2BB0F025F5F0">
         <di:waypoint xsi:type="dc:Point" x="120.0" y="180.0"/>
         <di:waypoint xsi:type="dc:Point" x="230.0" y="180.0"/>
       </bpmndi:BPMNEdge>
-      <bpmndi:BPMNShape id="_2F8TpgtHEeOzPek9wNsPug" bpmnElement="_D3667F1F-DEC3-47F3-8AE8-6E285E8083EF">
+      <bpmndi:BPMNShape id="_LKVaxQwJEeOZUcir1aIAfg" bpmnElement="_D3667F1F-DEC3-47F3-8AE8-6E285E8083EF">
         <dc:Bounds height="80.0" width="100.0" x="345.0" y="140.0"/>
       </bpmndi:BPMNShape>
-      <bpmndi:BPMNEdge id="_2F8TpwtHEeOzPek9wNsPug" bpmnElement="_71C652BD-AF59-4F8D-AC38-00C908AFF3A3">
+      <bpmndi:BPMNEdge id="_LKVaxgwJEeOZUcir1aIAfg" bpmnElement="_71C652BD-AF59-4F8D-AC38-00C908AFF3A3">
         <di:waypoint xsi:type="dc:Point" x="230.0" y="180.0"/>
         <di:waypoint xsi:type="dc:Point" x="395.0" y="180.0"/>
       </bpmndi:BPMNEdge>
-      <bpmndi:BPMNShape id="_2F8TqAtHEeOzPek9wNsPug" bpmnElement="_B5AFC951-26F2-4E92-AE3E-98FB0288E4C0">
-        <dc:Bounds height="28.0" width="28.0" x="505.0" y="161.0"/>
+      <bpmndi:BPMNShape id="_LKVaxwwJEeOZUcir1aIAfg" bpmnElement="_B5AFC951-26F2-4E92-AE3E-98FB0288E4C0">
+        <dc:Bounds height="28.0" width="28.0" x="503.0" y="159.0"/>
       </bpmndi:BPMNShape>
-      <bpmndi:BPMNEdge id="_2F8TqQtHEeOzPek9wNsPug" bpmnElement="_5839AB80-8E7D-4DED-8348-F95A844F8037">
+      <bpmndi:BPMNEdge id="_LKVayAwJEeOZUcir1aIAfg" bpmnElement="_5839AB80-8E7D-4DED-8348-F95A844F8037">
         <di:waypoint xsi:type="dc:Point" x="395.0" y="180.0"/>
-        <di:waypoint xsi:type="dc:Point" x="519.0" y="175.0"/>
+        <di:waypoint xsi:type="dc:Point" x="517.0" y="173.0"/>
       </bpmndi:BPMNEdge>
     </bpmndi:BPMNPlane>
   </bpmndi:BPMNDiagram>

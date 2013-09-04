@@ -1,6 +1,6 @@
 package org.railinc.shipping
 
-rule "TC Too Hot"
+rule "TC Too Hot" 
   dialect "mvel"
   ruleflow-group "temperatureControlledCheck"
   when

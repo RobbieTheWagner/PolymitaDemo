@@ -1,7 +1,7 @@
 //created on: Aug 3, 2013
 package org.railinc.shipping
 
-dialect "mvel"
+dialect "mvel" 
 	
 rule "itemWeightRejection"
     ruleflow-group "itemWeight"

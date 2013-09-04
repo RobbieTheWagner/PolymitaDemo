@@ -1,7 +1,7 @@
 //created on: Aug 21, 2013
 package org.railinc.shipping
 
-rule "ItemStarter"
+rule "ItemStarter" 
     when
 	i:Item(state=="start-process")
     then

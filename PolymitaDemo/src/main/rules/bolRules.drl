@@ -17,7 +17,7 @@ rule "bolPriceTotal"
         System.out.println("Set bol price");
 end
 
-rule "bolAccept"
+rule "bolAccept" 
   no-loop true
   ruleflow-group "bolValidation"
   when
