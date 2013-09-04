@@ -13,12 +13,6 @@ import org.railinc.shipping.Shipment;
 public class ShippingServiceImpl implements ShippingService {
 	
 	@Inject
-	ShippingServiceOld ss;
-	
-	@Inject
-	PromoService ps;
-	
-	@Inject
 	ProductService pp;
 	
 	public StatefulKnowledgeSession priceShipment(Shipment s) {

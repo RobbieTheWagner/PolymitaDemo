@@ -31,7 +31,7 @@ import org.railinc.shipping.Container;
 import org.railinc.shipping.Shipment;
 
 /**
- * This class allows many funtionalities of interfacing with BRMS.
+ * This class allows many functionalities of interfacing with BRMS.
  * 
  * @author rowagner
  * 
