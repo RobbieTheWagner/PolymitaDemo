@@ -1,0 +1,7 @@
+groups = [ 'weightReviewers' : new Group( "Weight Reviewers" ),
+           'hazardReviewers' : new Group( "Hazard Reviewers" ),
+           'adminGroup' : new Group( "Administrators" ),
+           'temperatureReviewers' : new Group( "Temperature Reviewers" )
+         ];
+
+return groups;
