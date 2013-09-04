@@ -295,6 +295,10 @@ cp $SUPPORT_DIR/business-central-persistence.xml $SERVER_DIR/business-central-se
 echo Configuring persistence "for" human tasks
 cp $SUPPORT_DIR/human-task-persistence.xml $SERVER_DIR/jbpm-human-task.war/WEB-INF/classes/META-INF/persistence.xml
 
+echo Configuring business central users
+cp $SUPPORT_DIR/BRMSUsers.mvel $SERVER_DIR/jbpm-human-task.war/WEB-INF/class/org/jbpm/task/servlet/BRMSUsers.mvel
+cp $SUPPORT_DIR/BRMSGroups.mvel $SERVER_DIR/jbpm-human-task.war/WEB-INF/class/org/jbpm/task/servlet/BRMSGroups.mvel
+
 echo
 echo "######################################################################"
 echo "##                                                                  ##"
