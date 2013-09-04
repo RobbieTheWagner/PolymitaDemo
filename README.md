@@ -18,7 +18,7 @@ A demo using BRMS, BPM, Polymita, and JBoss
 
 [Step 7: Upload Resources to Guvnor](#step7)
 
-[Step 8: Run the PolymitaDemo app](#step8)
+[Step 8: Install and Run PostgreSQL](#step8)
 
 [Step 9: Run the PolymitaDemo app](#step9)
 
