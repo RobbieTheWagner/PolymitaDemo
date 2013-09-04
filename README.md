@@ -85,7 +85,7 @@ sh ~/Downloads/PolymitaDemo/init.sh
 
 ## <a name="step5"/> Step 5: Setup Server and Define Runtimes
 
-### Setup EAP 6 Server
+### Setup EAP 6 Server in JBoss Developer Studio
 
 1. Select the Servers view. If it is currently not open, select **Window → Show View → Other** and search for the Servers view.
 2. Right click the white space in the Servers view and choose **New → Server**.
