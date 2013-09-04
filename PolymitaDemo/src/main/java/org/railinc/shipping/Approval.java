@@ -1,11 +1,16 @@
 package org.railinc.shipping;
 
+import java.io.Serializable;
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Set;
 
-public class Approval {
+public class Approval implements Serializable{
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private Container containerParent;  
 	private Item itemParent;
 	private String type;
