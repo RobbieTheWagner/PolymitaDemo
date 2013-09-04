@@ -84,13 +84,13 @@
       <!-- DefaultUsers.mvel is used to insert Administrator as it is required for task server to operate -->
       <init-param>
         <param-name>load.users</param-name>
-        <param-value>classpath:/org/jbpm/task/servlet/SampleUsers.mvel</param-value>
+        <param-value>classpath:/org/jbpm/task/servlet/BRMSUsers.mvel</param-value>
         <!-- param-value>classpath:/org/jbpm/task/servlet/DefaultUsers.mvel</param-value -->
       </init-param>
       <!-- use classpath:/org/jbpm/task/servlet/SampleGroups.mvel to configure sample users for demo purpose-->
       <init-param>
         <param-name>load.groups</param-name>
-        <param-value>classpath:/org/jbpm/task/servlet/SampleGroups.mvel</param-value>
+        <param-value>classpath:/org/jbpm/task/servlet/BRMSGroups.mvel</param-value>
       </init-param>
       
     <load-on-startup>2</load-on-startup>
