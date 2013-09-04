@@ -1,7 +1,12 @@
 PolymitaDemo
 ============
 
-A demo using BRMS, BPM, Polymita, and JBoss
+This is a shipping demo using BRMS, BPM, Polymita, and JBoss. You can create shipments, add containers to those shipments
+and add items to each of those containers. Items can have different weights, HazMat classes, and descriptions. If a
+hazardous item is added to the container, it kicks off a human task in jBPM, in which the item will need approval. Based on
+this information, the items are priced using BRMS, each container is assigned a price based on the items, and the total shipment
+gets a price based on all of the containers. This information is then all passed back to Java and reflected in the
+Bill of Lading table, and can be exported to PDF if desired.
 
 ## Table of Contents
 [Step 1: Clone The Repo](#step1) 
@@ -23,8 +28,6 @@ A demo using BRMS, BPM, Polymita, and JBoss
 [Step 9: Run the PolymitaDemo app](#step9)
 
 [Notes](#notes)
-
-Installation Instructions:
 
 ## <a name="step1"/> Step 1: Clone The Repo
 Clone this repo into your **~/Downloads** folder.
