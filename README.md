@@ -20,6 +20,8 @@ A demo using BRMS, BPM, Polymita, and JBoss
 
 [Step 8: Run the PolymitaDemo app](#step8)
 
+[Step 9: Run the PolymitaDemo app](#step9)
+
 [Notes](#notes)
 
 Installation Instructions:
@@ -193,7 +195,21 @@ Then find the JAR you just made and upload it.
   * Click the **Validate Configuration** button, followed by the **Build Package** button and fix any errors that may arise.
   * Click **File → Save Changes** to ensure the package that was built is saved.
 
-## <a name="step8"/> Step 8: Run the PolymitaDemo app
+## <a name="step8"/> Step 8: Install and Run PostgreSQL
+1. Go [here](http://www.postgresql.org/download/) and download the PostgreSQL that works with your system and follow the instructions to get it running.
+2. Start the PostgreSQL service with the template1 database and create a polymita user for the polymita table.
+
+```bash
+psql template1
+```
+
+```sql
+CREATE USER polymita WITH PASSWORD 'polymita';
+DROP DATABASE IF EXISTS polymita;
+CREATE DATABASE polymita;
+```
+
+## <a name="step9"/> Step 9: Run the PolymitaDemo app
 1. In JBoss Developer Studio, right click the project and choose **Run As → Run on Server**. 
 2. Then select the runtime you previously set up, and wait for everything to start up.
 3. You should then be able to navigate to **http://localhost:8080/PolymitaDemo** and see the app!
