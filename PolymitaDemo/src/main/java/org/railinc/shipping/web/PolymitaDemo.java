@@ -133,15 +133,14 @@ public class PolymitaDemo extends AbstractCdiApplication implements ClickListene
 		vl.addComponent(hsp);
 
 		generateBOL = new Button("Generate Bill of Lading");
-
 		generateBOL.setStyleName("bolButton");
 		generateBOL.addListener((ClickListener) this);
-
 		vl.addComponent(generateBOL);
 
 		refreshBOL = new Button("Refresh Bill of Lading");
 		refreshBOL.setStyleName("bolButton");
 		refreshBOL.addListener((ClickListener) this);
+		vl.addComponent(refreshBOL);
 
 		vl.setWidth("100%");
 		vl.setHeight("100%");
