@@ -18,7 +18,7 @@ public class Item implements Serializable {
 	private float priceDollars;
 	private String state;
 	private static final Set<String> STATES = new HashSet<String>(Arrays.asList(new String[] {
-			"waiting-on-customer-information", "start-process", "in-process", "accepted", "rejected" }));
+			"waiting-on-customer-information", "start-process", "in-process", "accepted", "rejected", "waiting-on-human-task" }));
 
 	public Item() {
 		priceDollars = 0;
