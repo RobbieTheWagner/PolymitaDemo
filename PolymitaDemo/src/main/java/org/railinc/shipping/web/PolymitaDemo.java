@@ -76,9 +76,9 @@ public class PolymitaDemo extends AbstractCdiApplication implements ClickListene
 
 	private Button generateBOL;
 
-	private Button exportToPDFButton;
+	private Button refreshBOL;
 
-	private int itemCount;
+	private Button exportToPDFButton;
 
 	private ArrayList<ArrayList<String>> bolItems;
 
@@ -133,11 +133,14 @@ public class PolymitaDemo extends AbstractCdiApplication implements ClickListene
 		vl.addComponent(hsp);
 
 		generateBOL = new Button("Generate Bill of Lading");
-
 		generateBOL.setStyleName("bolButton");
 		generateBOL.addListener((ClickListener) this);
-
 		vl.addComponent(generateBOL);
+
+		refreshBOL = new Button("Refresh Bill of Lading");
+		refreshBOL.setStyleName("bolButton");
+		refreshBOL.addListener((ClickListener) this);
+		vl.addComponent(refreshBOL);
 
 		vl.setWidth("100%");
 		vl.setHeight("100%");
@@ -224,31 +227,12 @@ public class PolymitaDemo extends AbstractCdiApplication implements ClickListene
 			getCurrentContainer().getItemsList().remove(i);
 			itemView.setItems(getCurrentContainer().getItemsList());
 			itemView.updateItems();
-		} else if (event.getButton() == getGenerateBOLButton() && getCurrentShipment() != null) {
-			exportToPDFButton.setVisible(true);
-			bolTable.setVisible(true);
-			shippingService.priceShipment(getCurrentShipment());
-			bolTable.removeAllItems();
-			int itemNum = 0;
-			bolItems = new ArrayList<ArrayList<String>>();
-			for (Container c : containerView.getContainers()) {
-				for (Item i : c.getItemsList()) {
-					bolTable.addItem(
-							new Object[] { new Integer(itemNum), new String(i.getDescription()),
-									new String(i.getType()), new Integer(i.getWeightLb()),
-									new Float(i.getPriceDollars()) }, i);
-					ArrayList<String> info = new ArrayList<String>(5);
-					info.add(Integer.toString(itemNum));
-					info.add(i.getDescription());
-					info.add(i.getType());
-					info.add(Integer.toString(i.getWeightLb()));
-					info.add(Float.toString(i.getPriceDollars()));
-					bolItems.add(info);
-					itemNum++;
-				}
-			}
+		} else if (event.getButton() == getRefreshBOLButton() && getCurrentShipment() != null) {
+			updateBOLInfo();
 
-			bolTable.requestRepaint();
+		} else if (event.getButton() == getGenerateBOLButton() && getCurrentShipment() != null) {
+			shippingService.priceShipment(getCurrentShipment());
+			updateBOLInfo();
 
 		} else if (event.getButton() == getExportToPDFButton()) {
 			downloadFile("BOL", "pdf", createPDF());
@@ -342,6 +326,15 @@ public class PolymitaDemo extends AbstractCdiApplication implements ClickListene
 	}
 
 	/**
+	 * Gets a reference to the button that refreshes the info in the BOL.
+	 * 
+	 * @return refreshBOL The button that generates a BOL.
+	 */
+	public Button getRefreshBOLButton() {
+		return refreshBOL;
+	}
+
+	/**
 	 * Checks if the weight string entered is numeric or not.
 	 * 
 	 * @param str
@@ -371,6 +364,35 @@ public class PolymitaDemo extends AbstractCdiApplication implements ClickListene
 	 */
 	public Button getExportToPDFButton() {
 		return exportToPDFButton;
+	}
+
+	/**
+	 * This method updates the items that may have been priced already and
+	 * replaces table info.
+	 */
+	public void updateBOLInfo() {
+		exportToPDFButton.setVisible(true);
+		bolTable.setVisible(true);
+		bolTable.removeAllItems();
+		int itemNum = 0;
+		bolItems = new ArrayList<ArrayList<String>>();
+		for (Container c : containerView.getContainers()) {
+			for (Item i : c.getItemsList()) {
+				bolTable.addItem(
+						new Object[] { new Integer(itemNum), new String(i.getDescription()), new String(i.getType()),
+								new Integer(i.getWeightLb()), new Float(i.getPriceDollars()) }, i);
+				ArrayList<String> info = new ArrayList<String>(5);
+				info.add(Integer.toString(itemNum));
+				info.add(i.getDescription());
+				info.add(i.getType());
+				info.add(Integer.toString(i.getWeightLb()));
+				info.add(Float.toString(i.getPriceDollars()));
+				bolItems.add(info);
+				itemNum++;
+			}
+		}
+
+		bolTable.requestRepaint();
 	}
 
 	/**
@@ -428,8 +450,8 @@ public class PolymitaDemo extends AbstractCdiApplication implements ClickListene
 			 * 27; i++) { ArrayList<String> row = bolItems.get(i); content[i +
 			 * 1] = row.toArray(new String[row.size()]); } }
 			 */
-			//drawTable(page, contentStream, 650, 50, content);
-			//contentStream.close();
+			// drawTable(page, contentStream, 650, 50, content);
+			// contentStream.close();
 			boolean firstTime = true;
 			ArrayList<ArrayList<String>> currentItems = new ArrayList<ArrayList<String>>();
 			currentItems.add(headers);
