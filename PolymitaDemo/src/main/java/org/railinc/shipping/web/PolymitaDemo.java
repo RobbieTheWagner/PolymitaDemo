@@ -52,7 +52,7 @@ import com.vaadin.ui.themes.Runo;
 public class PolymitaDemo extends AbstractCdiApplication implements ClickListener {
 
 	@WebServlet(urlPatterns = "/*", initParams = @WebInitParam(name = "application", value = "org.railinc.shipping.web.PolymitaDemo"))
-	public static class CoolStoreApplicationServlet extends CdiApplicationServlet {
+	public static class PolymitaDemoApplicationServlet extends CdiApplicationServlet {
 
 		/**
 		 * 
