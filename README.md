@@ -8,6 +8,8 @@ this information, the items are priced using BRMS, each container is assigned a 
 gets a price based on all of the containers. This information is then all passed back to Java and reflected in the
 Bill of Lading table, and can be exported to PDF if desired.
 
+This README will tell you how to install this demo. It will also go through a few sample usages of the program.
+
 ## Table of Contents
 [Step 1: Clone The Repo](#step1) 
 
@@ -28,6 +30,12 @@ Bill of Lading table, and can be exported to PDF if desired.
 [Step 9: Run the PolymitaDemo app](#step9)
 
 [Notes](#notes)
+
+[Usage of the App](#app)
+
+[Usage of BPM](#bpm)
+
+[Usage of Polymita](#polymita)
 
 ## <a name="step1"/> Step 1: Clone The Repo
 Clone this repo into your **~/Downloads** folder.
@@ -237,3 +245,12 @@ If you are not on linux, look around the documentation of the PostgreSQL instanc
 * You must PNG a flow after any changes for the Guvnor to realize the changes.
 * You must build your package again after all changes to make the changes go through.
 * You must have psql running whenever running the application, so you can access the databases.
+
+## <a name="app"/> Usage of the App 
+Explain how to use the app.
+
+## <a name="bpm"/> Usage of BPM
+Explain how to use BPM.
+
+## <a name="polymita"/> Usage of Polymita
+Explain how to use Polymita.
