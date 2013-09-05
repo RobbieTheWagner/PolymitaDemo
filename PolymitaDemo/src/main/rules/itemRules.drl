@@ -8,7 +8,7 @@ rule "itemWeightRejection"
     when
         i:Item(weightLb > 5000, state=="in-process")
     then
-        insert( new Rejection( i, "item too heavy") )
+        insert( new Approval(i) )
 end
  
 rule "calculateItemPriceNonHazardous"
