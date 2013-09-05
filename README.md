@@ -30,6 +30,8 @@ This README will tell you how to install this demo. It will also go through a fe
 
 [Step 9: Run the PolymitaDemo app](#step9)
 
+[Step 10: Configure Polymita](#step10)
+
 [Notes](#notes)
 
 ###Usage
@@ -241,6 +243,8 @@ If you are not on linux, look around the documentation of the PostgreSQL instanc
 1. In JBoss Developer Studio, right click the project and choose **Run As → Run on Server**. 
 2. Then select the runtime you previously set up, and wait for everything to start up.
 3. You should then be able to navigate to **http://localhost:8080/PolymitaDemo** and see the app!
+
+## <a name="step10"/> Step 10: Configure Polymita
 
 ## <a name="notes"/> Notes 
 * When you make changes, you must click the red stop button to stop the server, then do **Run As → Run on Server** again to redeploy.
