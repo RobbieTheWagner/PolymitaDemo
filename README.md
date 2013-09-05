@@ -11,6 +11,7 @@ Bill of Lading table, and can be exported to PDF if desired.
 This README will tell you how to install this demo. It will also go through a few sample usages of the program.
 
 ## Table of Contents
+###Installation
 [Step 1: Clone The Repo](#step1) 
 
 [Step 2: Download Source .zip Files](#step2)
@@ -31,11 +32,12 @@ This README will tell you how to install this demo. It will also go through a fe
 
 [Notes](#notes)
 
-[Usage of the App](#app)
+###Usage
+[App](#app)
 
-[Usage of BPM](#bpm)
+[BPM](#bpm)
 
-[Usage of Polymita](#polymita)
+[Polymita](#polymita)
 
 ## <a name="step1"/> Step 1: Clone The Repo
 Clone this repo into your **~/Downloads** folder.
@@ -246,11 +248,11 @@ If you are not on linux, look around the documentation of the PostgreSQL instanc
 * You must build your package again after all changes to make the changes go through.
 * You must have psql running whenever running the application, so you can access the databases.
 
-## <a name="app"/> Usage of the App 
+## <a name="app"/> App 
 Explain how to use the app.
 
-## <a name="bpm"/> Usage of BPM
+## <a name="bpm"/> BPM
 Explain how to use BPM.
 
-## <a name="polymita"/> Usage of Polymita
+## <a name="polymita"/> Polymita
 Explain how to use Polymita.
