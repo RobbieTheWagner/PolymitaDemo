@@ -103,19 +103,25 @@ public class ShipmentsView extends Panel {
 		shipper = new TextField("Shipper");
 		shipper.setRequired(true);
 		shipper.setRequiredError("Shipper must not be blank");
+		shipper.setWidth(buttonWidth);
+		vl.addComponent(shipper);
+		
 		shipperLocation = new TextField("Shipper Location");
 		shipperLocation.setRequired(true);
 		shipperLocation.setRequiredError("Shipper location must not be blank");
-		vl.addComponent(shipper);
+		shipperLocation.setWidth(buttonWidth);
 		vl.addComponent(shipperLocation);
 
 		receiver = new TextField("Receiver");
 		receiver.setRequired(true);
 		receiver.setRequiredError("Receiver must not be blank");
+		receiver.setWidth(buttonWidth);
+		vl.addComponent(receiver);
+		
 		receiverLocation = new TextField("Receiver Location");
 		receiverLocation.setRequired(true);
 		receiverLocation.setRequiredError("Receiver location must not be blank");
-		vl.addComponent(receiver);
+		receiverLocation.setWidth(buttonWidth);
 		vl.addComponent(receiverLocation);
 
 		newShipmentButton = new Button("Add New Shipment");

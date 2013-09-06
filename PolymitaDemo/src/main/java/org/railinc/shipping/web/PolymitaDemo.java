@@ -3,8 +3,6 @@ package org.railinc.shipping.web;
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.io.InputStream;
-import java.text.NumberFormat;
-import java.text.ParsePosition;
 import java.util.ArrayList;
 
 import javax.inject.Inject;
