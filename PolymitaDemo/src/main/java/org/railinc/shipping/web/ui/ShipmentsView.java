@@ -103,19 +103,25 @@ public class ShipmentsView extends Panel {
 		shipper = new TextField("Shipper");
 		shipper.setRequired(true);
 		shipper.setRequiredError("Shipper must not be blank");
+		shipper.setWidth(buttonWidth);
+		vl.addComponent(shipper);
+
 		shipperLocation = new TextField("Shipper Location");
 		shipperLocation.setRequired(true);
 		shipperLocation.setRequiredError("Shipper location must not be blank");
-		vl.addComponent(shipper);
+		shipperLocation.setWidth(buttonWidth);
 		vl.addComponent(shipperLocation);
 
 		receiver = new TextField("Receiver");
 		receiver.setRequired(true);
 		receiver.setRequiredError("Receiver must not be blank");
+		receiver.setWidth(buttonWidth);
+		vl.addComponent(receiver);
+
 		receiverLocation = new TextField("Receiver Location");
 		receiverLocation.setRequired(true);
 		receiverLocation.setRequiredError("Receiver location must not be blank");
-		vl.addComponent(receiver);
+		receiverLocation.setWidth(buttonWidth);
 		vl.addComponent(receiverLocation);
 
 		newShipmentButton = new Button("Add New Shipment");
@@ -210,36 +216,40 @@ public class ShipmentsView extends Panel {
 		return table;
 	}
 
+	/**
+	 * Gets the TextField that holds the name of the shipper.
+	 * 
+	 * @return shipper The TextField holding shipper.
+	 */
 	public TextField getShipper() {
 		return shipper;
 	}
 
-	public void setShipper(TextField shipper) {
-		this.shipper = shipper;
-	}
-
+	/**
+	 * Gets the TextField that holds the shipper location.
+	 * 
+	 * @return shipperLocation The Textfield holding shipper location.
+	 */
 	public TextField getShipperLocation() {
 		return shipperLocation;
 	}
 
-	public void setShipperLocation(TextField shipperLocation) {
-		this.shipperLocation = shipperLocation;
-	}
-
+	/**
+	 * Gets the TextField that holds the receiver name.
+	 * 
+	 * @return receiver The Textfield holding the receiver name.
+	 */
 	public TextField getReceiver() {
 		return receiver;
 	}
 
-	public void setReceiver(TextField receiver) {
-		this.receiver = receiver;
-	}
-
+	/**
+	 * Gets the TextField that holds the receiver location.
+	 * 
+	 * @return receiverLocation The Textfield holding receiver location.
+	 */
 	public TextField getReceiverLocation() {
 		return receiverLocation;
-	}
-
-	public void setReceiverLocation(TextField receiverLocation) {
-		this.receiverLocation = receiverLocation;
 	}
 
 }

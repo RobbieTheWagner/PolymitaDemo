@@ -1,6 +1,5 @@
 package org.railinc.shipping.util;
 
-import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
@@ -13,14 +12,11 @@ import org.drools.SystemEventListenerFactory;
 import org.drools.agent.KnowledgeAgent;
 import org.drools.agent.KnowledgeAgentFactory;
 import org.drools.builder.ResourceType;
-import org.drools.impl.EnvironmentFactory;
 import org.drools.io.Resource;
 import org.drools.io.ResourceChangeScannerConfiguration;
 import org.drools.io.ResourceFactory;
 import org.drools.io.impl.ChangeSetImpl;
 import org.drools.io.impl.UrlResource;
-import org.drools.runtime.Environment;
-import org.drools.runtime.EnvironmentName;
 import org.drools.runtime.StatefulKnowledgeSession;
 import org.drools.runtime.StatelessKnowledgeSession;
 import org.jbpm.task.service.TaskClient;
@@ -45,6 +41,9 @@ public class BRMSUtil {
 	private HornetQTaskClientConnector clientConnector = null;
 	HornetQTaskClientHandler clientHandler = null;
 
+	/**
+	 * Creates a new instance of BRMSUtil.
+	 */
 	public BRMSUtil() {
 	}
 
@@ -69,17 +68,13 @@ public class BRMSUtil {
 		ResourceFactory.getResourceChangeNotifierService().start();
 
 		ResourceFactory.getResourceChangeScannerService().start();
-		
-		clientHandler = new HornetQTaskClientHandler(
-				SystemEventListenerFactory.getSystemEventListener());
-		
-		
-		clientConnector = new HornetQTaskClientConnector(
-				"Human Task" + UUID.randomUUID(), clientHandler);
-		
+
+		clientHandler = new HornetQTaskClientHandler(SystemEventListenerFactory.getSystemEventListener());
+
+		clientConnector = new HornetQTaskClientConnector("Human Task" + UUID.randomUUID(), clientHandler);
+
 		client = new TaskClient(clientConnector);
 		client.connect("127.0.0.1", 5153);
-		
 
 	}
 
@@ -87,18 +82,15 @@ public class BRMSUtil {
 
 		return kagent.getKnowledgeBase().newStatelessKnowledgeSession();
 	}
-	
-	@SuppressWarnings("deprecation")
+
 	public StatefulKnowledgeSession getStatefulSession() {
 		ksession = kagent.getKnowledgeBase().newStatefulKnowledgeSession();
-		
-		CommandBasedHornetQWSHumanTaskHandler handler = new CommandBasedHornetQWSHumanTaskHandler(
-				ksession);
-		
+
+		CommandBasedHornetQWSHumanTaskHandler handler = new CommandBasedHornetQWSHumanTaskHandler(ksession);
+
 		handler.setClient(client);
-		
-		ksession.getWorkItemManager().registerWorkItemHandler("Human Task",
-				handler);
+
+		ksession.getWorkItemManager().registerWorkItemHandler("Human Task", handler);
 		return ksession;
 	}
 
@@ -154,6 +146,11 @@ public class BRMSUtil {
 		return resources;
 	}
 
+	/**
+	 * The main method for the BRMSUtil class
+	 * 
+	 * @param args
+	 */
 	public static void main(String[] args) {
 
 		BRMSUtil b = new BRMSUtil();

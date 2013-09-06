@@ -3,8 +3,6 @@ package org.railinc.shipping.web;
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.io.InputStream;
-import java.text.NumberFormat;
-import java.text.ParsePosition;
 import java.util.ArrayList;
 
 import javax.inject.Inject;
@@ -32,7 +30,6 @@ import org.vaadin.virkki.cdiutils.application.CdiApplicationServlet;
 
 import com.vaadin.terminal.StreamResource;
 import com.vaadin.terminal.StreamResource.StreamSource;
-import com.vaadin.terminal.UserError;
 import com.vaadin.ui.Button;
 import com.vaadin.ui.Button.ClickEvent;
 import com.vaadin.ui.Button.ClickListener;
@@ -196,7 +193,7 @@ public class PolymitaDemo extends AbstractCdiApplication implements ClickListene
 				Contact receiver = new Contact();
 				receiver.setName((String) shipmentView.getReceiver().getValue());
 				receiver.setLocation((String) shipmentView.getReceiverLocation().getValue());
-				bol.setShipper(shipper);
+				bol.setReceiver(receiver);
 				// Add shipment to list
 				shipmentView.getShipments().addShipment(ship);
 				shipmentView.updateShipments();
