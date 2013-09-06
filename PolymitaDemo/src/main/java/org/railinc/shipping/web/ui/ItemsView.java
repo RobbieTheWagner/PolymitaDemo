@@ -1,11 +1,14 @@
 package org.railinc.shipping.web.ui;
 
+import java.text.NumberFormat;
+import java.text.ParsePosition;
 import java.util.LinkedHashSet;
 import java.util.Set;
 
 import org.railinc.shipping.Item;
 import org.railinc.shipping.web.PolymitaDemo;
 
+import com.vaadin.data.Validator;
 import com.vaadin.event.ShortcutAction.KeyCode;
 import com.vaadin.ui.Button;
 import com.vaadin.ui.Button.ClickListener;
@@ -61,7 +64,10 @@ public class ItemsView extends Panel {
 
 		description = new TextArea();
 		description.setWordwrap(true);
+		description.addValidator(new DescriptionValidator());
+		
 		weight = new TextField();
+		weight.addValidator(new WeightValidator());
 
 		hazardous = new Select();
 		hazardous.addItem("non-hazardous");
@@ -136,9 +142,9 @@ public class ItemsView extends Panel {
 
 		hl.addComponent(table);
 		hl.addComponent(vl2);
-		
+
 		HorizontalLayout hl2 = new HorizontalLayout();
-		
+
 		hl2.addComponent(hazardsTable);
 
 		vl.addComponent(hl);
@@ -241,5 +247,57 @@ public class ItemsView extends Panel {
 	public TextArea getItemDescription() {
 		return description;
 	}
+	
+	/**
+	 * Checks if the weight string entered is numeric or not.
+	 * 
+	 * @param str
+	 * @return
+	 */
+	public static boolean isNumeric(String str) {
+		NumberFormat formatter = NumberFormat.getInstance();
+		ParsePosition pos = new ParsePosition(0);
+		formatter.parse(str, pos);
+		return str.length() == pos.getIndex();
+	}
 
+	public class DescriptionValidator implements Validator {
+		private static final long serialVersionUID = -8281962473854901819L;
+
+		@Override
+		public void validate(Object value) throws InvalidValueException {
+			// Simply call the isValid(). It is possible to have
+			// more complex logic here to also report the reason
+			// of the failure in better detail.
+			if (!isValid(value))
+				throw new InvalidValueException("Description must be <= 14 characters.");
+		}
+
+		@Override
+		public boolean isValid(Object value) {
+			if (value instanceof String && ((String) value).length() <= 14)
+				return true;
+			return false;
+		}
+	}
+	
+	public class WeightValidator implements Validator {
+		private static final long serialVersionUID = -8281962473854901819L;
+
+		@Override
+		public void validate(Object value) throws InvalidValueException {
+			// Simply call the isValid(). It is possible to have
+			// more complex logic here to also report the reason
+			// of the failure in better detail.
+			if (!isValid(value))
+				throw new InvalidValueException("Weight must be numeric.");
+		}
+
+		@Override
+		public boolean isValid(Object value) {
+			if (value instanceof String && isNumeric(((String) value)))
+				return true;
+			return false;
+		}
+	}
 }

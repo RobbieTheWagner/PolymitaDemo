@@ -1,6 +1,6 @@
 package org.railinc.shipping.model;
 
-import java.util.HashSet;
+import java.util.LinkedHashSet;
 import java.util.Set;
 
 import org.railinc.shipping.Shipment;
@@ -12,21 +12,35 @@ public class ShipmentList {
 	 * Creates a new ShipmentList.
 	 */
 	public ShipmentList() {
-		shipmentList = new HashSet<Shipment>();
+		shipmentList = new LinkedHashSet<Shipment>();
 	}
 
 	/**
 	 * Adds a shipment to the list of shipments
 	 * 
-	 * @param e
+	 * @param s
 	 *            The shipment to add.
 	 */
-	public void addShipment(Shipment e) {
-		shipmentList.add(e);
+	public void addShipment(Shipment s) {
+		shipmentList.add(s);
 	}
-	
-	public Set<Shipment> getShipments()
-	{
+
+	/**
+	 * Removes a shipment from the list of shipments.
+	 * 
+	 * @param s
+	 *            The shipment to remove.
+	 */
+	public void removeShipment(Shipment s) {
+		shipmentList.remove(s);
+	}
+
+	/**
+	 * Gets the list of shipments.
+	 * 
+	 * @return shipmentList The list of shipments.
+	 */
+	public Set<Shipment> getShipments() {
 		return shipmentList;
 	}
 
