@@ -49,17 +49,9 @@ public class ShippingServiceImplBRMS implements ShippingService, Serializable {
 
 					ksession = brmsUtil.getStatefulSession();
 
-					Contact shipper = new Contact();
-					shipper.setName("ACME");
-					shipper.setLocation("Yosemite Valley");
-					Contact receiver = new Contact();
-					receiver.setName("Co Inc");
-					receiver.setLocation("Little Rock");
 					BillOfLading bol = new BillOfLading();
 					bol = s.getBillOfLadingParent();
 					bol.setState("start-process");
-					bol.setShipper(shipper);
-					bol.setReceiver(receiver);
 					s.setState("start-process");
 					ksession.insert(bol);
 					ksession.insert(s);
