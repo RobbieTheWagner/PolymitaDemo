@@ -64,9 +64,13 @@ public class ItemsView extends Panel {
 
 		description = new TextArea();
 		description.setWordwrap(true);
+		description.setRequired(true);
+		description.setRequiredError("Description must not be blank.");
 		description.addValidator(new DescriptionValidator());
-		
+
 		weight = new TextField();
+		weight.setRequired(true);
+		weight.setRequiredError("Weight must not be blank.");
 		weight.addValidator(new WeightValidator());
 
 		hazardous = new Select();
@@ -247,7 +251,7 @@ public class ItemsView extends Panel {
 	public TextArea getItemDescription() {
 		return description;
 	}
-	
+
 	/**
 	 * Checks if the weight string entered is numeric or not.
 	 * 
@@ -280,7 +284,7 @@ public class ItemsView extends Panel {
 			return false;
 		}
 	}
-	
+
 	public class WeightValidator implements Validator {
 		private static final long serialVersionUID = -8281962473854901819L;
 
@@ -300,4 +304,5 @@ public class ItemsView extends Panel {
 			return false;
 		}
 	}
+
 }

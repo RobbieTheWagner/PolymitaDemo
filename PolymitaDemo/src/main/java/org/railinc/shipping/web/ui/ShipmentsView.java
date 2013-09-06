@@ -1,7 +1,5 @@
 package org.railinc.shipping.web.ui;
 
-import org.railinc.shipping.Container;
-import org.railinc.shipping.Item;
 import org.railinc.shipping.Shipment;
 import org.railinc.shipping.model.ShipmentList;
 import org.railinc.shipping.web.PolymitaDemo;
@@ -101,20 +99,24 @@ public class ShipmentsView extends Panel {
 		});
 
 		vl.addComponent(table);
-		
-        shipper = new TextField("ACME");
-        shipperLocation = new TextField("New York, NY");
-        vl.addComponent(new Label("Shipper"));
-        vl.addComponent(shipper);
-        vl.addComponent(new Label("Shipper Location"));
-        vl.addComponent(shipperLocation);
-        
-        receiver = new TextField("Co Inc");
-        receiverLocation = new TextField("San Diego, CA");
-        vl.addComponent(new Label("Receiver"));
-        vl.addComponent(receiver);
-        vl.addComponent(new Label("Receiver Location"));
-        vl.addComponent(receiverLocation);
+
+		shipper = new TextField("Shipper");
+		shipper.setRequired(true);
+		shipper.setRequiredError("Shipper must not be blank");
+		shipperLocation = new TextField("Shipper Location");
+		shipperLocation.setRequired(true);
+		shipperLocation.setRequiredError("Shipper location must not be blank");
+		vl.addComponent(shipper);
+		vl.addComponent(shipperLocation);
+
+		receiver = new TextField("Receiver");
+		receiver.setRequired(true);
+		receiver.setRequiredError("Receiver must not be blank");
+		receiverLocation = new TextField("Receiver Location");
+		receiverLocation.setRequired(true);
+		receiverLocation.setRequiredError("Receiver location must not be blank");
+		vl.addComponent(receiver);
+		vl.addComponent(receiverLocation);
 
 		newShipmentButton = new Button("Add New Shipment");
 		newShipmentButton.addListener((ClickListener) app);
@@ -239,7 +241,5 @@ public class ShipmentsView extends Panel {
 	public void setReceiverLocation(TextField receiverLocation) {
 		this.receiverLocation = receiverLocation;
 	}
-	
-	
 
 }
