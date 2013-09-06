@@ -18,6 +18,8 @@ import org.apache.pdfbox.pdmodel.PDPage;
 import org.apache.pdfbox.pdmodel.edit.PDPageContentStream;
 import org.apache.pdfbox.pdmodel.font.PDFont;
 import org.apache.pdfbox.pdmodel.font.PDType1Font;
+import org.railinc.shipping.BillOfLading;
+import org.railinc.shipping.Contact;
 import org.railinc.shipping.Container;
 import org.railinc.shipping.Shipment;
 import org.railinc.shipping.Item;
@@ -183,12 +185,30 @@ public class PolymitaDemo extends AbstractCdiApplication implements ClickListene
 			getContainerView().setVisible(true);
 			Shipment ship = new Shipment();
 			ship.setState("start-process");
+			BillOfLading bol = ship.getBillOfLadingParent();
+			//Create and set shipper
+			Contact shipper = new Contact();
+			shipper.setName((String)shipmentView.getShipper().getValue());
+			shipper.setLocation((String)shipmentView.getShipperLocation().getValue());
+			bol.setShipper(shipper);
+			//Create and set receiver
+			Contact receiver = new Contact();
+			receiver.setName((String)shipmentView.getReceiver().getValue());
+			receiver.setLocation((String)shipmentView.getReceiverLocation().getValue());
+			bol.setShipper(shipper);
+			//Add shipment to list
 			shipmentView.getShipments().addShipment(ship);
-			shipmentView.updateShipments(ship);
+			shipmentView.updateShipments();
 			if (shipmentView.getShipments().getShipments().size() == 1) {
 				shipmentView.getShipmentsTable().setValue(shipmentView.getShipmentsTable().firstItemId());
 			}
 			containerView.setVisible(true);
+		} else if (event.getButton() == shipmentView.getRemoveShipmentButton()) {
+			exportToPDFButton.setVisible(false);
+			bolTable.setVisible(false);
+			Shipment s = (Shipment) shipmentView.getShipmentsTable().getValue();
+			shipmentView.getShipments().removeShipment(s);
+			shipmentView.updateShipments();
 		} else if (event.getButton() == containerView.getNewContainerButton()) {
 			exportToPDFButton.setVisible(false);
 			bolTable.setVisible(false);
@@ -201,11 +221,18 @@ public class PolymitaDemo extends AbstractCdiApplication implements ClickListene
 			if (containerView.getContainers().size() >= 1) {
 				containerView.getContainersTable().setValue(containerView.getContainersTable().lastItemId());
 			}
+		} else if (event.getButton() == containerView.getRemoveContainerButton()) {
+			exportToPDFButton.setVisible(false);
+			bolTable.setVisible(false);
+			Container c = (Container) containerView.getContainersTable().getValue();
+			getCurrentShipment().getContainersList().remove(c);
+			containerView.setContainers(getCurrentShipment().getContainersList());
+			containerView.updateContainers();
 		} else if (event.getButton() == itemView.getNewItemButton()) {
 			exportToPDFButton.setVisible(false);
 			bolTable.setVisible(false);
-			String itemWeight = (String) itemView.getWeight().getValue();
-			if (isNumeric(itemWeight)) {
+			if (itemView.getWeight().isValid() && itemView.getItemDescription().isValid()) {
+				String itemWeight = (String) itemView.getWeight().getValue();
 				Item i = new Item();
 				i.setContainerParent(getCurrentContainer());
 				i.setWeightLb(Integer.valueOf(itemWeight));
@@ -216,10 +243,7 @@ public class PolymitaDemo extends AbstractCdiApplication implements ClickListene
 				itemView.updateItems();
 				itemView.getWeight().setComponentError(null);
 				itemView.getWeight().setValidationVisible(false);
-			} else {
-				itemView.getWeight().setComponentError(new UserError("Value must be an integer."));
 			}
-
 		} else if (event.getButton() == itemView.getRemoveItemButton()) {
 			exportToPDFButton.setVisible(false);
 			bolTable.setVisible(false);
@@ -229,7 +253,6 @@ public class PolymitaDemo extends AbstractCdiApplication implements ClickListene
 			itemView.updateItems();
 		} else if (event.getButton() == getRefreshBOLButton() && getCurrentShipment() != null) {
 			updateBOLInfo();
-
 		} else if (event.getButton() == getGenerateBOLButton() && getCurrentShipment() != null) {
 			shippingService.priceShipment(getCurrentShipment());
 			updateBOLInfo();
@@ -335,19 +358,6 @@ public class PolymitaDemo extends AbstractCdiApplication implements ClickListene
 	}
 
 	/**
-	 * Checks if the weight string entered is numeric or not.
-	 * 
-	 * @param str
-	 * @return
-	 */
-	public static boolean isNumeric(String str) {
-		NumberFormat formatter = NumberFormat.getInstance();
-		ParsePosition pos = new ParsePosition(0);
-		formatter.parse(str, pos);
-		return str.length() == pos.getIndex();
-	}
-
-	/**
 	 * Returns a reference to the table that holds information about the
 	 * generated BOL.
 	 * 
@@ -378,9 +388,8 @@ public class PolymitaDemo extends AbstractCdiApplication implements ClickListene
 		bolItems = new ArrayList<ArrayList<String>>();
 		for (Container c : containerView.getContainers()) {
 			for (Item i : c.getItemsList()) {
-				bolTable.addItem(
-						new Object[] { new Integer(itemNum), new String(i.getDescription()), new String(i.getType()),
-								new Integer(i.getWeightLb()), new Float(i.getPriceDollars()) }, i);
+				bolTable.addItem(new Object[] { new Integer(itemNum), new String(i.getDescription()),
+						new String(i.getType()), new Integer(i.getWeightLb()), new Float(i.getPriceDollars()) }, i);
 				ArrayList<String> info = new ArrayList<String>(5);
 				info.add(Integer.toString(itemNum));
 				info.add(i.getDescription());

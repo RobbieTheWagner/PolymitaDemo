@@ -32,6 +32,7 @@ public class ContainersView extends Panel {
 	 */
 	private static final long serialVersionUID = 1L;
 	private Button newContainerButton;
+	private Button removeContainerButton;
 	private String buttonWidth = "175px";
 	private Set<Container> containerList = new LinkedHashSet<Container>();
 	private VerticalLayout vl;
@@ -84,17 +85,15 @@ public class ContainersView extends Panel {
 
 		vl.addComponent(table);
 
-		HorizontalLayout hl = new HorizontalLayout();
-
-		hl.setSpacing(true);
-
 		newContainerButton = new Button("Add New Container");
 		newContainerButton.addListener((ClickListener) app);
-		newContainerButton.setClickShortcut(KeyCode.ENTER);
 		newContainerButton.setWidth(buttonWidth);
-		hl.addComponent(newContainerButton);
-
-		vl.addComponent(hl);
+		vl.addComponent(newContainerButton);
+		
+		removeContainerButton = new Button("Remove Container");
+		removeContainerButton.addListener((ClickListener) app);
+		removeContainerButton.setWidth(buttonWidth);
+		vl.addComponent(removeContainerButton);
 
 		vl.setSizeFull();
 
@@ -115,6 +114,15 @@ public class ContainersView extends Panel {
 	 */
 	public Button getNewContainerButton() {
 		return newContainerButton;
+	}
+	
+	/**
+	 * Gets the button used to remove a container.
+	 * 
+	 * @return The remove container button.
+	 */
+	public Button getRemoveContainerButton() {
+		return removeContainerButton;
 	}
 
 	/**
