@@ -5,8 +5,8 @@ import java.io.Serializable;
 import javax.ejb.Stateful;
 import javax.inject.Inject;
 
+
 import org.drools.runtime.StatefulKnowledgeSession;
-import org.drools.runtime.process.ProcessInstance;
 import org.mortbay.log.Log;
 import org.railinc.shipping.BillOfLading;
 import org.railinc.shipping.Contact;
@@ -41,7 +41,6 @@ public class ShippingServiceImplBRMS implements ShippingService, Serializable {
 		if (s != null) {
 
 			StatefulKnowledgeSession ksession = null;
-			ProcessInstance masterFlow = null;
 
 			try {
 
@@ -66,20 +65,20 @@ public class ShippingServiceImplBRMS implements ShippingService, Serializable {
 					ksession.insert(s);
 
 					for (Container c : s.getContainersList()) {
+						c.setState("start-process");
 						ksession.insert(c);
 
 						for (Item i : c.getItemsList()) {
+							i.setState("start-process");
 							ksession.insert(i);
 						}
 
 					}
 
-					masterFlow = ksession.startProcess("org.railinc.shipping.MasterFlow");
-
-					ksession.fireAllRules();
-
-					System.out.println("processState is " + masterFlow.getState());
-
+					ksession.startProcess("org.railinc.shipping.MasterFlow");
+					
+					Thread rules = new Thread(new ksessionRuleRunnable(ksession));
+					rules.start();
 
 				}
 
@@ -111,5 +110,20 @@ public class ShippingServiceImplBRMS implements ShippingService, Serializable {
 		return null;
 
 	}
+}
 
+class ksessionRuleRunnable implements Runnable  {
+
+	private StatefulKnowledgeSession ksession;
+	
+	public ksessionRuleRunnable(StatefulKnowledgeSession k){
+		ksession = k;
+	}
+	@Override
+	public void run() {
+		// TODO Auto-generated method stub
+		ksession.fireUntilHalt();
+		System.out.println("Process Halted");
+		ksession.dispose();
+	}
 }
