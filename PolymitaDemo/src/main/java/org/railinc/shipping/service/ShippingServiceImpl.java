@@ -3,7 +3,6 @@ package org.railinc.shipping.service;
 
 import javax.ejb.Stateless;
 import javax.enterprise.inject.Alternative;
-import javax.inject.Inject;
 
 import org.drools.runtime.StatefulKnowledgeSession;
 import org.railinc.shipping.Shipment;
@@ -12,8 +11,6 @@ import org.railinc.shipping.Shipment;
 @Stateless
 public class ShippingServiceImpl implements ShippingService {
 	
-	@Inject
-	ProductService pp;
 	
 	public StatefulKnowledgeSession priceShipment(Shipment s) {
 						
