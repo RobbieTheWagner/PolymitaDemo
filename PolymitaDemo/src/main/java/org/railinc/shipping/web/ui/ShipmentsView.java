@@ -12,6 +12,7 @@ import com.vaadin.ui.Button;
 import com.vaadin.ui.Label;
 import com.vaadin.ui.Panel;
 import com.vaadin.ui.Table;
+import com.vaadin.ui.TextField;
 import com.vaadin.ui.VerticalLayout;
 import com.vaadin.ui.Button.ClickListener;
 import com.vaadin.ui.themes.Runo;
@@ -30,6 +31,10 @@ public class ShipmentsView extends Panel {
 	private static final long serialVersionUID = 1L;
 	private Button newShipmentButton;
 	private Button removeShipmentButton;
+	private TextField shipper;
+	private TextField shipperLocation;
+	private TextField receiver;
+	private TextField receiverLocation;
 	private String buttonWidth = "175px";
 	private ShipmentList shipmentList;
 	private VerticalLayout vl;
@@ -96,6 +101,20 @@ public class ShipmentsView extends Panel {
 		});
 
 		vl.addComponent(table);
+		
+        shipper = new TextField("ACME");
+        shipperLocation = new TextField("New York, NY");
+        vl.addComponent(new Label("Shipper"));
+        vl.addComponent(shipper);
+        vl.addComponent(new Label("Shipper Location"));
+        vl.addComponent(shipperLocation);
+        
+        receiver = new TextField("Co Inc");
+        receiverLocation = new TextField("San Diego, CA");
+        vl.addComponent(new Label("Receiver"));
+        vl.addComponent(receiver);
+        vl.addComponent(new Label("Receiver Location"));
+        vl.addComponent(receiverLocation);
 
 		newShipmentButton = new Button("Add New Shipment");
 		newShipmentButton.addListener((ClickListener) app);
@@ -188,5 +207,39 @@ public class ShipmentsView extends Panel {
 	public Table getShipmentsTable() {
 		return table;
 	}
+
+	public TextField getShipper() {
+		return shipper;
+	}
+
+	public void setShipper(TextField shipper) {
+		this.shipper = shipper;
+	}
+
+	public TextField getShipperLocation() {
+		return shipperLocation;
+	}
+
+	public void setShipperLocation(TextField shipperLocation) {
+		this.shipperLocation = shipperLocation;
+	}
+
+	public TextField getReceiver() {
+		return receiver;
+	}
+
+	public void setReceiver(TextField receiver) {
+		this.receiver = receiver;
+	}
+
+	public TextField getReceiverLocation() {
+		return receiverLocation;
+	}
+
+	public void setReceiverLocation(TextField receiverLocation) {
+		this.receiverLocation = receiverLocation;
+	}
+	
+	
 
 }

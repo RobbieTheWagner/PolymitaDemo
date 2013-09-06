@@ -18,6 +18,8 @@ import org.apache.pdfbox.pdmodel.PDPage;
 import org.apache.pdfbox.pdmodel.edit.PDPageContentStream;
 import org.apache.pdfbox.pdmodel.font.PDFont;
 import org.apache.pdfbox.pdmodel.font.PDType1Font;
+import org.railinc.shipping.BillOfLading;
+import org.railinc.shipping.Contact;
 import org.railinc.shipping.Container;
 import org.railinc.shipping.Shipment;
 import org.railinc.shipping.Item;
@@ -183,6 +185,18 @@ public class PolymitaDemo extends AbstractCdiApplication implements ClickListene
 			getContainerView().setVisible(true);
 			Shipment ship = new Shipment();
 			ship.setState("start-process");
+			BillOfLading bol = ship.getBillOfLadingParent();
+			//Create and set shipper
+			Contact shipper = new Contact();
+			shipper.setName((String)shipmentView.getShipper().getValue());
+			shipper.setLocation((String)shipmentView.getShipperLocation().getValue());
+			bol.setShipper(shipper);
+			//Create and set receiver
+			Contact receiver = new Contact();
+			receiver.setName((String)shipmentView.getReceiver().getValue());
+			receiver.setLocation((String)shipmentView.getReceiverLocation().getValue());
+			bol.setShipper(shipper);
+			//Add shipment to list
 			shipmentView.getShipments().addShipment(ship);
 			shipmentView.updateShipments();
 			if (shipmentView.getShipments().getShipments().size() == 1) {
