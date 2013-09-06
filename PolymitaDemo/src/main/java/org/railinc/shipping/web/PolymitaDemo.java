@@ -196,7 +196,7 @@ public class PolymitaDemo extends AbstractCdiApplication implements ClickListene
 				Contact receiver = new Contact();
 				receiver.setName((String) shipmentView.getReceiver().getValue());
 				receiver.setLocation((String) shipmentView.getReceiverLocation().getValue());
-				bol.setShipper(shipper);
+				bol.setReceiver(receiver);
 				// Add shipment to list
 				shipmentView.getShipments().addShipment(ship);
 				shipmentView.updateShipments();
