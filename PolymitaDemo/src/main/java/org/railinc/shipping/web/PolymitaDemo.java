@@ -182,30 +182,34 @@ public class PolymitaDemo extends AbstractCdiApplication implements ClickListene
 		if (event.getButton() == shipmentView.getNewShipmentButton()) {
 			exportToPDFButton.setVisible(false);
 			bolTable.setVisible(false);
-			getContainerView().setVisible(true);
-			Shipment ship = new Shipment();
-			ship.setState("start-process");
-			BillOfLading bol = ship.getBillOfLadingParent();
-			//Create and set shipper
-			Contact shipper = new Contact();
-			shipper.setName((String)shipmentView.getShipper().getValue());
-			shipper.setLocation((String)shipmentView.getShipperLocation().getValue());
-			bol.setShipper(shipper);
-			//Create and set receiver
-			Contact receiver = new Contact();
-			receiver.setName((String)shipmentView.getReceiver().getValue());
-			receiver.setLocation((String)shipmentView.getReceiverLocation().getValue());
-			bol.setShipper(shipper);
-			//Add shipment to list
-			shipmentView.getShipments().addShipment(ship);
-			shipmentView.updateShipments();
-			if (shipmentView.getShipments().getShipments().size() == 1) {
-				shipmentView.getShipmentsTable().setValue(shipmentView.getShipmentsTable().firstItemId());
+			if (shipmentView.getShipper().isValid() && shipmentView.getShipperLocation().isValid()
+					&& shipmentView.getReceiver().isValid() && shipmentView.getReceiverLocation().isValid()) {
+				Shipment ship = new Shipment();
+				ship.setState("start-process");
+				BillOfLading bol = ship.getBillOfLadingParent();
+				// Create and set shipper
+				Contact shipper = new Contact();
+				shipper.setName((String) shipmentView.getShipper().getValue());
+				shipper.setLocation((String) shipmentView.getShipperLocation().getValue());
+				bol.setShipper(shipper);
+				// Create and set receiver
+				Contact receiver = new Contact();
+				receiver.setName((String) shipmentView.getReceiver().getValue());
+				receiver.setLocation((String) shipmentView.getReceiverLocation().getValue());
+				bol.setShipper(shipper);
+				// Add shipment to list
+				shipmentView.getShipments().addShipment(ship);
+				shipmentView.updateShipments();
+				if (shipmentView.getShipments().getShipments().size() == 1) {
+					shipmentView.getShipmentsTable().setValue(shipmentView.getShipmentsTable().firstItemId());
+				}
+				containerView.setVisible(true);
 			}
-			containerView.setVisible(true);
 		} else if (event.getButton() == shipmentView.getRemoveShipmentButton()) {
 			exportToPDFButton.setVisible(false);
 			bolTable.setVisible(false);
+			itemView.setVisible(false);
+			containerView.setVisible(false);
 			Shipment s = (Shipment) shipmentView.getShipmentsTable().getValue();
 			shipmentView.getShipments().removeShipment(s);
 			shipmentView.updateShipments();
