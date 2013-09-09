@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset='utf-8'>
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <meta name="viewport" content="width=640" />
+
+    <link rel="stylesheet" href="stylesheets/core.css" media="screen"/>
+    <link rel="stylesheet" href="stylesheets/mobile.css" media="handheld, only screen and (max-device-width:640px)"/>
+    <link rel="stylesheet" href="stylesheets/pygment_trac.css"/>
+
+    <script type="text/javascript" src="javascripts/modernizr.js"></script>
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+    <script type="text/javascript" src="javascripts/headsmart.min.js"></script>
+    <script type="text/javascript">
+      $(document).ready(function () {
+        $('#main_content').headsmart()
+      })
+    </script>
+    <title>Polymitademo by rwwagner90</title>
+  </head>
+
+  <body>
+    <a id="forkme_banner" href="https://github.com/rwwagner90/PolymitaDemo">View on GitHub</a>
+    <div class="shell">
+
+      <header>
+        <span class="ribbon-outer">
+          <span class="ribbon-inner">
+            <h1>Polymitademo</h1>
+            <h2>A shipping demo using BRMS, BPM, Polymita, and JBoss.</h2>
+          </span>
+          <span class="left-tail"></span>
+          <span class="right-tail"></span>
+        </span>
+      </header>
+
+      <section id="downloads">
+        <span class="inner">
+          <a href="https://github.com/rwwagner90/PolymitaDemo/zipball/master" class="zip"><em>download</em> .ZIP</a><a href="https://github.com/rwwagner90/PolymitaDemo/tarball/master" class="tgz"><em>download</em> .TGZ</a>
+        </span>
+      </section>
+
+
+      <span class="banner-fix"></span>
+
+
+      <section id="main_content">
+        <h1>
+<a name="polymitademo" class="anchor" href="#polymitademo"><span class="octicon octicon-link"></span></a>PolymitaDemo</h1>
+
+<p>This is a shipping demo using BRMS, BPM, Polymita, and JBoss. You can create shipments, add containers to those shipments
+and add items to each of those containers. Items can have different weights, HazMat classes, and descriptions. If a
+hazardous item is added to the container, it kicks off a human task in jBPM, in which the item will need approval. Based on
+this information, the items are priced using BRMS, each container is assigned a price based on the items, and the total shipment
+gets a price based on all of the containers. This information is then all passed back to Java and reflected in the
+Bill of Lading table, and can be exported to PDF if desired.</p>
+
+<p>This README will tell you how to install this demo. It will also go through a few sample usages of the program.</p>
+
+<h2>
+<a name="table-of-contents" class="anchor" href="#table-of-contents"><span class="octicon octicon-link"></span></a>Table of Contents</h2>
+
+<h3>
+<a name="installation" class="anchor" href="#installation"><span class="octicon octicon-link"></span></a>Installation</h3>
+
+<p><a href="#step1">Step 1: Clone The Repo</a> </p>
+
+<p><a href="#step2">Step 2: Download Source .zip Files</a></p>
+
+<p><a href="#step3">Step 3: Install Maven</a></p>
+
+<p><a href="#step4">Step 4: Transfer Maven settings.xml and Build Project</a></p>
+
+<p><a href="#step5">Step 5: Install and Run PostgreSQL</a></p>
+
+<p><a href="#step6">Step 6: Setup Server and Define Runtimes</a></p>
+
+<p><a href="#step7">Step 7: Import the Project</a></p>
+
+<p><a href="#step8">Step 8: Upload Resources to Guvnor</a></p>
+
+<p><a href="#step9">Step 9: Run the PolymitaDemo app</a></p>
+
+<p><a href="#step10">Step 10: Configure Polymita</a></p>
+
+<p><a href="#notes">Notes</a></p>
+
+<h3>
+<a name="usage" class="anchor" href="#usage"><span class="octicon octicon-link"></span></a>Usage</h3>
+
+<p><a href="#app">App</a></p>
+
+<p><a href="#bpm">BPM</a></p>
+
+<p><a href="#polymita">Polymita</a></p>
+
+<h2>
+<a name="-step-1-clone-the-repo" class="anchor" href="#-step-1-clone-the-repo"><span class="octicon octicon-link"></span></a><a name="step1"></a> Step 1: Clone The Repo</h2>
+
+<p>Clone this repo into your <strong>~/Downloads</strong> folder.</p>
+
+<div class="highlight highlight-bash"><pre><span class="nb">cd</span> ~/Downloads
+git clone https://github.com/rwwagner90/PolymitaDemo.git
+</pre></div>
+
+<h2>
+<a name="-step-2-download-source-zip-files" class="anchor" href="#-step-2-download-source-zip-files"><span class="octicon octicon-link"></span></a><a name="step2"></a> Step 2: Download Source .zip Files</h2>
+
+<p>Download the following from the JBoss Customer Portal at access.redhat.com</p>
+
+<p><strong>EAP6 (jboss-eap-6.1.0.zip)</strong></p>
+
+<p><strong>BRMS deployable (brms-p-5.3.1.GA-deployable-ee6.zip)</strong></p>
+
+<p>Copy these files to the installs directory in the root of this repo and ensure that they are executable by running:</p>
+
+<div class="highlight highlight-bash"><pre>chmod +x ~/Downloads/PolymitaDemo/installs/jboss-eap-6.1.0.zip
+chmod +x ~/Downloads/PolymitaDemo/installs/brms-p-5.3.1.GA-deployable-ee6.zip
+</pre></div>
+
+<h2>
+<a name="-step-3-install-maven" class="anchor" href="#-step-3-install-maven"><span class="octicon octicon-link"></span></a><a name="step3"></a> Step 3: Install Maven</h2>
+
+<p>Make sure you have Maven installed on your machine.</p>
+
+<div class="highlight highlight-bash"><pre>mvn --version
+</pre></div>
+
+<p>If you have it installed, you will see output similar to:</p>
+
+<div class="highlight highlight-bash"><pre>Apache Maven 3.0.3 <span class="o">(</span>r1075438; 2011-02-28 12:31:09-0500<span class="o">)</span>
+Maven home: /usr/share/maven
+Java version: 1.6.0_51, vendor: Apple Inc.
+Java home: /System/Library/Java/JavaVirtualMachines/1.6.0.jdk/Contents/Home
+Default locale: en_US, platform encoding: MacRoman
+OS name: <span class="s2">"mac os x"</span>, version: <span class="s2">"10.8.4"</span>, arch: <span class="s2">"x86_64"</span>, family: <span class="s2">"mac"</span>
+</pre></div>
+
+<p>If you do not have it installed, you can find instructions on how to install it online. 
+One specific source is <a href="http://maven.apache.org/guides/getting-started/maven-in-five-minutes.html">here</a>, but 
+there are other tutorials you can find.</p>
+
+<h2>
+<a name="-step-4-transfer-maven-settingsxml-and-build-project" class="anchor" href="#-step-4-transfer-maven-settingsxml-and-build-project"><span class="octicon octicon-link"></span></a><a name="step4"></a> Step 4: Transfer Maven settings.xml and Build Project</h2>
+
+<p>Copy the settings.xml file in the root of this repo to your <strong>~/.m2</strong> folder.</p>
+
+<div class="highlight highlight-bash"><pre>cp ~/Downloads/PolymitaDemo/settings.xml ~/.m2/
+</pre></div>
+
+<p>Then you are ready to build the project. Run the init.sh script in the root of your repository folder and it will build.</p>
+
+<div class="highlight highlight-bash"><pre>sh ~/Downloads/PolymitaDemo/init.sh
+</pre></div>
+
+<h2>
+<a name="-step-5-install-and-run-postgresql" class="anchor" href="#-step-5-install-and-run-postgresql"><span class="octicon octicon-link"></span></a><a name="step5"></a> Step 5: Install and Run PostgreSQL</h2>
+
+<ol>
+<li>Go <a href="http://www.postgresql.org/download/">here</a> and download the PostgreSQL that works with your system and follow the instructions to get it running.</li>
+<li>Start the PostgreSQL service with the template1 database and create a polymita user for the polymita table.</li>
+</ol><p>In bash, start psql by running:</p>
+
+<div class="highlight highlight-bash"><pre>psql template1
+</pre></div>
+
+<p>Execute the following once you are running psql.</p>
+
+<div class="highlight highlight-sql"><pre><span class="k">CREATE</span> <span class="k">USER</span> <span class="n">polymita</span> <span class="k">WITH</span> <span class="n">PASSWORD</span> <span class="s1">'polymita'</span><span class="p">;</span>
+<span class="k">DROP</span> <span class="k">DATABASE</span> <span class="n">IF</span> <span class="k">EXISTS</span> <span class="n">polymita</span><span class="p">;</span>
+<span class="k">CREATE</span> <span class="k">DATABASE</span> <span class="n">polymita</span><span class="p">;</span>
+<span class="k">ALTER</span> <span class="k">DATABASE</span> <span class="n">polymita</span> <span class="k">OWNER</span> <span class="k">TO</span> <span class="n">polymita</span><span class="p">;</span> 
+</pre></div>
+
+<p>Now start the psql service. If you are on linux, use the following command:</p>
+
+<div class="highlight highlight-bash"><pre>sudo service postgresql start
+</pre></div>
+
+<p>If you are not on linux, look around the documentation of the PostgreSQL instance you installed for how to start it.</p>
+
+<h2>
+<a name="-step-6-setup-server-and-define-runtimes" class="anchor" href="#-step-6-setup-server-and-define-runtimes"><span class="octicon octicon-link"></span></a><a name="step6"></a> Step 6: Setup Server and Define Runtimes</h2>
+
+<h3>
+<a name="setup-eap-6-server-in-jboss-developer-studio" class="anchor" href="#setup-eap-6-server-in-jboss-developer-studio"><span class="octicon octicon-link"></span></a>Setup EAP 6 Server in JBoss Developer Studio</h3>
+
+<ol>
+<li>Select the Servers view. If it is currently not open, select <strong>Window → Show View → Other</strong> and search for the Servers view.</li>
+<li>Right click the white space in the Servers view and choose <strong>New → Server</strong>.</li>
+<li>Select JBoss Enterprise Application Platform 6.1.</li>
+<li>Set the following values:
+
+<ul>
+<li>Server's host name: <strong>localhost</strong>
+</li>
+<li>Server Name: <strong>JBoss EAP 6.1</strong>
+</li>
+<li>For Server Runtime Environment click <strong>Add</strong> Then set the following:</li>
+<li>Name: <strong>JBoss EAP 6.1 Runtime</strong>
+</li>
+<li>Home Directory: <strong>~/Downloads/PolymitaDemo/target/jboss-eap6.1</strong>
+</li>
+<li>JRE: Choose 1.7.x, whichever version of Java 7 you prefer.</li>
+<li>Configuration file: <strong>standalone.xml</strong>.</li>
+<li>
+<strong>Note:</strong> If this runtime was automatically detected earlier and created, you may just use it instead of making a new one.</li>
+</ul>
+</li>
+<li>Click Finish.</li>
+</ol><h3>
+<a name="install-soa-tools" class="anchor" href="#install-soa-tools"><span class="octicon octicon-link"></span></a>Install SOA Tools</h3>
+
+<p>Select <strong>Help → Install New Software</strong> and add the SOA Tools update site <strong><a href="https://devstudio.jboss.com/updates/5.0/central/soa-tooling/">https://devstudio.jboss.com/updates/5.0/central/soa-tooling/</a></strong></p>
+
+<p>Select <strong>Business Rules Tooling</strong> and <strong>SOA and Data Services Tooling</strong> (all sub-menu items will be selected) and proceed through installation and restart JBoss Developer Studio to complete the installation. </p>
+
+<p>You will be told to restart JBoss Developer Studio for the changes to take effect, do this now.</p>
+
+<h3>
+<a name="detect-and-add-a-brms-531-runtime-environment" class="anchor" href="#detect-and-add-a-brms-531-runtime-environment"><span class="octicon octicon-link"></span></a>Detect and add a BRMS 5.3.1 runtime environment</h3>
+
+<ol>
+<li>Select <strong>Window → Preferences</strong>.</li>
+<li>Click the plus sign to expand <strong>JBoss Tools</strong> and then select <strong>JBoss Runtime Detection</strong>.</li>
+<li>Select the <strong>Add</strong> button and navigate to the <strong>~/Downloads/PolymitaDemo/target</strong> folder, then select OK.</li>
+<li>The jboss-eap-6.1 runtime created earlier should have been found and selected. If so, select OK.</li>
+<li>Select OK again to close the Preferences dialog window.</li>
+</ol><h3>
+<a name="detect-and-add-jbpm-brms-531-runtime-environment" class="anchor" href="#detect-and-add-jbpm-brms-531-runtime-environment"><span class="octicon octicon-link"></span></a>Detect and add jBPM BRMS 5.3.1 runtime environment</h3>
+
+<ol>
+<li>Select <strong>Window → Preferences</strong>.</li>
+<li>Click the plus sign to expand <strong>jBPM</strong> and then select <strong>Installed jBPM Runtimes</strong>.</li>
+<li>If not automatically listed in the view: Select the <strong>Add</strong> button, then the <strong>Create a new jBPM Runtime</strong> button and navigate to the <strong>~/Downloads/PolymitaDemo/target/jboss-eap-6.1</strong> folder, then name the runtime <strong>jBPM BRMS 5.3.1 runtime</strong> and select OK.</li>
+<li>The <strong>jBPM BRMS 5.3.1 runtime</strong> should be selected. If so, select OK to close the Preferences dialog window. If not, click box to add check mark next to runtime and then select OK.</li>
+<li>If asked to restart JBoss Developer Studio for the changes to take effect, restart.</li>
+</ol><h3>
+<a name="detect-and-add-drools-531-runtime-environment" class="anchor" href="#detect-and-add-drools-531-runtime-environment"><span class="octicon octicon-link"></span></a>Detect and add Drools 5.3.1 runtime environment</h3>
+
+<ol>
+<li>Select <strong>Window → Preferences</strong>.</li>
+<li>Click the plus sign to expand <strong>Drools</strong> and then select <strong>Installed Drools Runtimes</strong>.</li>
+<li>If not automatically listed in the view: Select the <strong>Add</strong> button, then the <strong>Create a new Drools 5 Runtime</strong> button and navigate to the <strong>~/Downloads/PolymitaDemo/target/jboss-eap-6.1</strong> folder, then name the runtime <strong>Drools 5.3.1.Final runtime</strong> and select OK.</li>
+<li>Select the <strong>Drools 5.3.1.Final runtime</strong>.</li>
+<li>In <strong>Drools</strong> in the left hand side menu select <strong>Drools Flow nodes</strong>, make sure all boxes are checked
+and select OK to close the Preferences dialog window.</li>
+<li>You will be told to restart JBoss Developer Studio for the changes to take effect, do this now.</li>
+</ol><h2>
+<a name="-step-7-import-the-project" class="anchor" href="#-step-7-import-the-project"><span class="octicon octicon-link"></span></a><a name="step7"></a> Step 7: Import the Project</h2>
+
+<p>Import the project into JBoss Developer Studio by clicking <strong>File → Import</strong> and choosing <strong>General → Existing Projects into Workspace</strong>.
+Then navigate to <strong>~/Downloads/PolymitaDemo/PolymitaDemo</strong> as the source folder. (Note the double PolymitaDemo/PolymitaDemo)</p>
+
+<p>Then we need to update the dependencies and such so everything will work.</p>
+
+<p>Right click the project folder and do <strong>Maven → Update Project</strong>, followed by <strong>Run As → Maven Clean</strong>, and then <strong>Run As → Maven Install</strong>. This should download all the required dependencies.</p>
+
+<p>Now that everything is updated, start the server so that Guvnor will be running for the next step. To do this, right
+click the project and choose <strong>Run As → Run on Server</strong> and choose the <strong>JBoss EAP 6.1</strong> server and click finish.</p>
+
+<h2>
+<a name="-step-8-upload-resources-to-guvnor" class="anchor" href="#-step-8-upload-resources-to-guvnor"><span class="octicon octicon-link"></span></a><a name="step8"></a> Step 8: Upload Resources to Guvnor</h2>
+
+<h3>
+<a name="upload-pojo-model" class="anchor" href="#upload-pojo-model"><span class="octicon octicon-link"></span></a>Upload POJO Model</h3>
+
+<p>Select all the java files under <strong>org.railinc.shipping</strong> and then right click and choose <strong>Export → Java → JAR file</strong>.</p>
+
+<p>All of the default options for saving the JAR will be fine, just save it somewhere you will remember.</p>
+
+<p>Next, navigate to <strong>http://localhost:8080/jboss-brms</strong> and login with Username: <strong>admin</strong> and Password: <strong>admin</strong>. 
+This is Guvnor that you are logging into, and it is where you will upload rules and flows.</p>
+
+<p>After logging in, it will ask you to import sample data because it is a new repository. <strong>DO NOT</strong> do this!</p>
+
+<p>Then click Knowledge Bases and then click <strong>Create New → New Package</strong> and call it <strong>org.railinc.shipping</strong>.</p>
+
+<p>Still in Knowledge Bases, click <strong>Create New → Upload POJO</strong>. Name it whatever you would like and click next. 
+Then find the JAR you just made and upload it.</p>
+
+<h3>
+<a name="upload-rules-and-flows" class="anchor" href="#upload-rules-and-flows"><span class="octicon octicon-link"></span></a>Upload Rules and Flows</h3>
+
+<ol>
+<li>Add Guvnor to JBoss Developer Studio
+
+<ul>
+<li>Click <strong>Window → Open Perspective → Other → Guvnor Repository Exploring</strong>
+</li>
+<li>Then click <strong>File → New → Other → Guvnor → Guvnor repository location</strong>
+</li>
+<li>The default info is fine for Location, Port, and Repository, and for User Name put <strong>admin</strong> and also for Password put <strong>admin</strong>.</li>
+<li>Click finish</li>
+</ul>
+</li>
+<li>Upload rules to Guvnor
+
+<ul>
+<li>In JBoss Developer Studio, navigate to <strong>src/main/rules</strong>.</li>
+<li>Select all .drl files, right click and go to <strong>Guvnor → Add</strong>
+</li>
+<li>Use your existing Guvnor, click next.</li>
+<li>Expand your Guvnor and select <strong>packages/org.railinc.shipping</strong> as the package to upload to.</li>
+<li>Click finish</li>
+</ul>
+</li>
+<li>Upload flows to Guvnor
+
+<ul>
+<li>In JBoss Developer Studio, navigate to <strong>src/main/resources</strong>.</li>
+<li>Select all .bpmn2 files, right click and go to <strong>Guvnor → Add</strong>
+</li>
+<li>Use your existing Guvnor, click next.</li>
+<li>Expand your Guvnor and select <strong>packages/org.railinc.shipping</strong> as the package to upload to.</li>
+<li>Click finish</li>
+</ul>
+</li>
+<li>Add the item form
+
+<ul>
+<li>In Guvnor, navigate to <strong>Knowledge Bases → org → railinc → shipping</strong>.</li>
+<li>Under the Assets tab open the processes dropdown and open <strong>org.railinc.shipping.ItemFlow</strong>
+</li>
+<li>In the ItemFlow window click the task called "Hazard Human Check"</li>
+<li>Click on the green shirted man directly above the task and a form editing window pops up</li>
+<li>In JBoss Developer Studio open up <strong>src/main/resources/humanHazardCheck.html</strong>
+</li>
+<li>copy-paste the contents into the process form window in guvnor and click save.</li>
+</ul>
+</li>
+<li>PNG all flows
+
+<ul>
+<li>Log in to Guvnor at <strong>http://localhost:8080/jboss-brms</strong> with the Username: <strong>admin</strong> and Password: <strong>admin</strong>.</li>
+<li>Click <strong>Knowledge Bases → org → railinc → shipping</strong> to navigate to the package.</li>
+<li>Now click <strong>Assets → Processes</strong> and click <strong>Open</strong> next to each process. This will open each one in a tab at the top.</li>
+<li>Now click each tab, and the flow will appear for that process.</li>
+<li>While viewing each flow, click the PNG button at the bottom to generate images needed by BRMS. You do not need to save the generated PNG file, it will save the images in assets by itself.</li>
+<li>After each PNG is generated, click <strong>File → Save Changes</strong>.</li>
+</ul>
+</li>
+<li>Build the package
+
+<ul>
+<li>In Guvnor, navigate to <strong>Knowledge Bases → org → railinc → shipping</strong>.</li>
+<li>Then click <strong>Edit</strong>.</li>
+<li>Click the <strong>Validate Configuration</strong> button, followed by the <strong>Build Package</strong> button and fix any errors that may arise.</li>
+<li>Click <strong>File → Save Changes</strong> to ensure the package that was built is saved.</li>
+</ul>
+</li>
+</ol><h2>
+<a name="-step-9-run-the-polymitademo-app" class="anchor" href="#-step-9-run-the-polymitademo-app"><span class="octicon octicon-link"></span></a><a name="step9"></a> Step 9: Run the PolymitaDemo app</h2>
+
+<ol>
+<li>In JBoss Developer Studio, right click the project and choose <strong>Run As → Run on Server</strong>. </li>
+<li>Then select the runtime you previously set up, and wait for everything to start up.</li>
+<li>You should then be able to navigate to <strong>http://localhost:8080/PolymitaDemo</strong> and see the app!</li>
+</ol><h2>
+<a name="-step-10-configure-polymita" class="anchor" href="#-step-10-configure-polymita"><span class="octicon octicon-link"></span></a><a name="step10"></a> Step 10: Configure Polymita</h2>
+
+<h2>
+<a name="-notes" class="anchor" href="#-notes"><span class="octicon octicon-link"></span></a><a name="notes"></a> Notes</h2>
+
+<ul>
+<li>When you make changes, you must click the red stop button to stop the server, then do <strong>Run As → Run on Server</strong> again to redeploy.</li>
+<li>You must PNG a flow after any changes for the Guvnor to realize the changes.</li>
+<li>You must build your package again after all changes to make the changes go through.</li>
+<li>You must have psql running whenever running the application, so you can access the databases.</li>
+</ul><h2>
+<a name="-app" class="anchor" href="#-app"><span class="octicon octicon-link"></span></a><a name="app"></a> App</h2>
+
+<p>This <a href="http://vimeo.com/74143875">video</a> will show you how the PolymitaDemo app is used.</p>
+
+<h2>
+<a name="-bpm" class="anchor" href="#-bpm"><span class="octicon octicon-link"></span></a><a name="bpm"></a> BPM</h2>
+
+<p>Explain how to use BPM.</p>
+
+<h2>
+<a name="-polymita" class="anchor" href="#-polymita"><span class="octicon octicon-link"></span></a><a name="polymita"></a> Polymita</h2>
+
+<p>Explain how to use Polymita.</p>
+      </section>
+
+      <footer>
+        <span class="ribbon-outer">
+          <span class="ribbon-inner">
+            <p>this project by <a href="https://github.com/rwwagner90">rwwagner90</a> can be found on <a href="https://github.com/rwwagner90/PolymitaDemo">GitHub</a></p>
+          </span>
+          <span class="left-tail"></span>
+          <span class="right-tail"></span>
+        </span>
+        <p>Generated with <a href="http://pages.github.com">GitHub Pages</a> using Merlot</p>
+        <span class="octocat"></span>
+      </footer>
+
+    </div>
+
+    
+  </body>
+</html>
