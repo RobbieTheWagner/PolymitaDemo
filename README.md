@@ -20,13 +20,13 @@ This README will tell you how to install this demo. It will also go through a fe
 
 [Step 4: Transfer Maven settings.xml and Build Project](#step4)
 
-[Step 5: Setup Server and Define Runtimes](#step5)
+[Step 5: Install and Run PostgreSQL](#step5)
 
-[Step 6: Import the Project](#step6)
+[Step 6: Setup Server and Define Runtimes](#step6)
 
-[Step 7: Upload Resources to Guvnor](#step7)
+[Step 7: Import the Project](#step7)
 
-[Step 8: Install and Run PostgreSQL](#step8)
+[Step 8: Upload Resources to Guvnor](#step8)
 
 [Step 9: Run the PolymitaDemo app](#step9)
 
@@ -95,7 +95,31 @@ Then you are ready to build the project. Run the init.sh script in the root of y
 sh ~/Downloads/PolymitaDemo/init.sh
 ```
 
-## <a name="step5"/> Step 5: Setup Server and Define Runtimes
+## <a name="step5"/> Step 5: Install and Run PostgreSQL
+1. Go [here](http://www.postgresql.org/download/) and download the PostgreSQL that works with your system and follow the instructions to get it running.
+2. Start the PostgreSQL service with the template1 database and create a polymita user for the polymita table.
+
+In bash, start psql by running:
+```bash
+psql template1
+```
+
+Execute the following once you are running psql.
+```sql
+CREATE USER polymita WITH PASSWORD 'polymita';
+DROP DATABASE IF EXISTS polymita;
+CREATE DATABASE polymita;
+ALTER DATABASE polymita OWNER TO polymita; 
+```
+
+Now start the psql service. If you are on linux, use the following command:
+```bash
+sudo service postgresql start
+```
+
+If you are not on linux, look around the documentation of the PostgreSQL instance you installed for how to start it.
+
+## <a name="step6"/> Step 6: Setup Server and Define Runtimes
 
 ### Setup EAP 6 Server in JBoss Developer Studio
 
@@ -147,7 +171,7 @@ You will be told to restart JBoss Developer Studio for the changes to take effec
 and select OK to close the Preferences dialog window.
 6. You will be told to restart JBoss Developer Studio for the changes to take effect, do this now.
 
-## <a name="step6"/> Step 6: Import the Project
+## <a name="step7"/> Step 7: Import the Project
 Import the project into JBoss Developer Studio by clicking **File → Import** and choosing **General → Existing Projects into Workspace**.
 Then navigate to **~/Downloads/PolymitaDemo/PolymitaDemo** as the source folder. (Note the double PolymitaDemo/PolymitaDemo)
 
@@ -158,7 +182,7 @@ Right click the project folder and do **Maven → Update Project**, followed by 
 Now that everything is updated, start the server so that Guvnor will be running for the next step. To do this, right
 click the project and choose **Run As → Run on Server** and choose the **JBoss EAP 6.1** server and click finish.
 
-## <a name="step7"/> Step 7: Upload Resources to Guvnor
+## <a name="step8"/> Step 8: Upload Resources to Guvnor
 
 ### Upload POJO Model
 
@@ -214,30 +238,6 @@ Then find the JAR you just made and upload it.
   * Then click **Edit**.
   * Click the **Validate Configuration** button, followed by the **Build Package** button and fix any errors that may arise.
   * Click **File → Save Changes** to ensure the package that was built is saved.
-
-## <a name="step8"/> Step 8: Install and Run PostgreSQL
-1. Go [here](http://www.postgresql.org/download/) and download the PostgreSQL that works with your system and follow the instructions to get it running.
-2. Start the PostgreSQL service with the template1 database and create a polymita user for the polymita table.
-
-In bash, start psql by running:
-```bash
-psql template1
-```
-
-Execute the following once you are running psql.
-```sql
-CREATE USER polymita WITH PASSWORD 'polymita';
-DROP DATABASE IF EXISTS polymita;
-CREATE DATABASE polymita;
-ALTER DATABASE polymita OWNER TO polymita; 
-```
-
-Now start the psql service. If you are on linux, use the following command:
-```bash
-sudo service postgresql start
-```
-
-If you are not on linux, look around the documentation of the PostgreSQL instance you installed for how to start it.
 
 ## <a name="step9"/> Step 9: Run the PolymitaDemo app
 1. In JBoss Developer Studio, right click the project and choose **Run As → Run on Server**. 
