@@ -253,7 +253,7 @@ Then find the JAR you just made and upload it.
 * You must have psql running whenever running the application, so you can access the databases.
 
 ## <a name="app"/> App 
-Explain how to use the app.
+<iframe src="//player.vimeo.com/video/74143875" width="500" height="313" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe> <p><a href="http://vimeo.com/74143875">Polymita App (Enhanced)</a> from <a href="http://vimeo.com/user20737457">Robert Wagner</a> on <a href="https://vimeo.com">Vimeo</a>.</p>
 
 ## <a name="bpm"/> BPM
 Explain how to use BPM.
