@@ -9,7 +9,6 @@ import javax.inject.Inject;
 import org.drools.runtime.StatefulKnowledgeSession;
 import org.mortbay.log.Log;
 import org.railinc.shipping.BillOfLading;
-import org.railinc.shipping.Contact;
 import org.railinc.shipping.Shipment;
 import org.railinc.shipping.Container;
 import org.railinc.shipping.Item;
