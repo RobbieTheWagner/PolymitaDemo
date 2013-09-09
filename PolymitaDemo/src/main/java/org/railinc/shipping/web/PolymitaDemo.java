@@ -160,6 +160,7 @@ public class PolymitaDemo extends AbstractCdiApplication implements ClickListene
 		bolTable.setPageLength(10);
 		getMainWindow().addComponent(bolTable);
 		bolTable.setVisible(false);
+		refreshBOL.setVisible(false);
 
 		exportToPDFButton = new Button("Export to PDF");
 		exportToPDFButton.addListener((ClickListener) this);
@@ -179,6 +180,7 @@ public class PolymitaDemo extends AbstractCdiApplication implements ClickListene
 		if (event.getButton() == shipmentView.getNewShipmentButton()) {
 			exportToPDFButton.setVisible(false);
 			bolTable.setVisible(false);
+			refreshBOL.setVisible(false);
 			if (shipmentView.getShipper().isValid() && shipmentView.getShipperLocation().isValid()
 					&& shipmentView.getReceiver().isValid() && shipmentView.getReceiverLocation().isValid()) {
 				Shipment ship = new Shipment();
@@ -205,6 +207,7 @@ public class PolymitaDemo extends AbstractCdiApplication implements ClickListene
 		} else if (event.getButton() == shipmentView.getRemoveShipmentButton()) {
 			exportToPDFButton.setVisible(false);
 			bolTable.setVisible(false);
+			refreshBOL.setVisible(false);
 			itemView.setVisible(false);
 			containerView.setVisible(false);
 			Shipment s = (Shipment) shipmentView.getShipmentsTable().getValue();
@@ -213,6 +216,7 @@ public class PolymitaDemo extends AbstractCdiApplication implements ClickListene
 		} else if (event.getButton() == containerView.getNewContainerButton()) {
 			exportToPDFButton.setVisible(false);
 			bolTable.setVisible(false);
+			refreshBOL.setVisible(false);
 			itemView.setVisible(true);
 			Container c = new Container();
 			c.setShipmentParent(getCurrentShipment());
@@ -225,6 +229,7 @@ public class PolymitaDemo extends AbstractCdiApplication implements ClickListene
 		} else if (event.getButton() == containerView.getRemoveContainerButton()) {
 			exportToPDFButton.setVisible(false);
 			bolTable.setVisible(false);
+			refreshBOL.setVisible(false);
 			Container c = (Container) containerView.getContainersTable().getValue();
 			getCurrentShipment().getContainersList().remove(c);
 			containerView.setContainers(getCurrentShipment().getContainersList());
@@ -232,6 +237,7 @@ public class PolymitaDemo extends AbstractCdiApplication implements ClickListene
 		} else if (event.getButton() == itemView.getNewItemButton()) {
 			exportToPDFButton.setVisible(false);
 			bolTable.setVisible(false);
+			refreshBOL.setVisible(false);
 			if (itemView.getWeight().isValid() && itemView.getItemDescription().isValid()) {
 				String itemWeight = (String) itemView.getWeight().getValue();
 				Item i = new Item();
@@ -248,6 +254,7 @@ public class PolymitaDemo extends AbstractCdiApplication implements ClickListene
 		} else if (event.getButton() == itemView.getRemoveItemButton()) {
 			exportToPDFButton.setVisible(false);
 			bolTable.setVisible(false);
+			refreshBOL.setVisible(false);
 			Item i = (Item) itemView.getItemsTable().getValue();
 			getCurrentContainer().getItemsList().remove(i);
 			itemView.setItems(getCurrentContainer().getItemsList());
@@ -384,6 +391,7 @@ public class PolymitaDemo extends AbstractCdiApplication implements ClickListene
 	public void updateBOLInfo() {
 		exportToPDFButton.setVisible(true);
 		bolTable.setVisible(true);
+		refreshBOL.setVisible(true);
 		bolTable.removeAllItems();
 		int itemNum = 0;
 		bolItems = new ArrayList<ArrayList<String>>();
