@@ -169,14 +169,6 @@ echo "  - enabling demo accounts role setup in brms-roles.properties file..."
 echo
 cp support/brms-roles.properties $SERVER_CONF
 
-echo "  - enabling demo accounts logins for dashbuilder in bam-users.properties file..."
-echo
-cp support/bam-users.properties $SERVER_CONF
-
-echo "  - enabling demo accounts for dashbuilder bam-roles.properties file..."
-echo
-cp support/bam-roles.properties $SERVER_CONF
-
 echo "  - adding dodeploy files to deploy all brms components..."
 echo 
 touch $SERVER_DIR/business-central-server.war.dodeploy
@@ -209,8 +201,7 @@ cp support/MANIFEST.MF $SERVER_DIR/jbpm-human-task.war/WEB-INF/classes/META-INF/
 
 echo "  - adding dashbuilder.war (Polymita) to the deployments folder..."
 echo
-cp -Rf support/dashboardbuilder-bpms.war $SERVER_DIR
-touch $SERVER_DIR/dashboardbuilder-bpms.war.dodeploy
+cp support/dashboardbuilder-bpms.war $SERVER_DIR
 
 echo "  - mavenizing your repo with BRMS components."
 echo
