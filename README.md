@@ -245,6 +245,17 @@ Then find the JAR you just made and upload it.
 3. You should then be able to navigate to **http://localhost:8080/PolymitaDemo** and see the app!
 
 ## <a name="step10"/> Step 10: Configure Polymita
+1. Create a user.
+  * Run ~/Downloads/PolymitaDemo/target/jboss-eap6.1/bin/add-user.sh
+  * Choose **b** for an Application User
+  * Press **enter** to select ApplicationRealm
+  * For username choose **polymita**
+  * Choose any password you desire
+  * For roles type **user,admin**
+  * For the next step say **yes**
+  * And for EJB say **no**
+  
+Go to http://localhost:8080/dashbuilder and login with **polymita** and the password you created.
 
 ## <a name="notes"/> Notes 
 * When you make changes, you must click the red stop button to stop the server, then do **Run As → Run on Server** again to redeploy.
