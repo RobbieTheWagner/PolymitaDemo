@@ -1,5 +1,5 @@
 //created on: Aug 21, 2013
-package org.railinc.shipping
+package org.railroad.shipping
 
 rule "ItemStarter" 
     when
@@ -7,7 +7,7 @@ rule "ItemStarter"
     then
 	i.setState("in-process");
 	update(i);
-	kcontext.getKnowledgeRuntime().startProcess("org.railinc.shipping.MasterFlow");
+	kcontext.getKnowledgeRuntime().startProcess("org.railroad.shipping.MasterFlow");
 	System.out.println(i.getState() + " ITEM");
 end
 

@@ -1,5 +1,5 @@
 //created on: Aug 5, 2013
-package org.railinc.shipping
+package org.railroad.shipping
 
 dialect "mvel" 
 rule "containerWeightTotal"

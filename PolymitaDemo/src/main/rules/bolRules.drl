@@ -1,4 +1,4 @@
-package org.railinc.shipping
+package org.railroad.shipping
 import java.lang.Number;
 import org.drools.runtime.process.ProcessInstance;
 
