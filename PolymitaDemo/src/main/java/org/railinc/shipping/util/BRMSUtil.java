@@ -89,6 +89,7 @@ public class BRMSUtil {
 		CommandBasedHornetQWSHumanTaskHandler handler = new CommandBasedHornetQWSHumanTaskHandler(ksession);
 
 		handler.setClient(client);
+		handler.connect();
 
 		ksession.getWorkItemManager().registerWorkItemHandler("Human Task", handler);
 		return ksession;

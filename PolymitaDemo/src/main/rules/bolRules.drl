@@ -1,5 +1,6 @@
 package org.railinc.shipping
 import java.lang.Number;
+import org.drools.runtime.process.ProcessInstance;
 
 
 rule "bolPriceTotal"
@@ -26,4 +27,12 @@ rule "bolAccept"
   then
     abol.setState("accepted");
     update(abol);
+end
+
+rule "bolhalt"
+	when
+		processInstance: ProcessInstance()
+		BillOfLading(state=="accepted")
+	then
+		drools.halt();
 end

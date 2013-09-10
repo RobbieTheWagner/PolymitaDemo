@@ -1,5 +1,4 @@
 //created on: Aug 3, 2013
-package org.railinc.shipping
 
 dialect "mvel" 
 	
@@ -15,7 +14,7 @@ rule "calculateItemPriceNonHazardous"
   ruleflow-group "itemPricing"
   
   when
-    i : Item( priceDollars == 0 , w:weightLb > 0, type=="non-hazardous", state=="in-process" )
+    i : Item( priceDollars == 0 , w:weightLb > 0, type=="non-hazardous", state == "in-process" )
   then 
     i.setPriceDollars( 10*w );
     i.setState("accepted");
@@ -29,7 +28,7 @@ rule "calculateItemPriceHazardous"
   when
     i : Item( priceDollars == 0 , w : weightLb > 0, type == "Class 1" || type == "Class 2" || type== "Class 3" || 
               type == "Class 4" || type == "Class 5" || type == "Class 6" || type == "Class 7" || type== "Class 8" ||
-              type == "Class 9", state=="in-process" )
+              type == "Class 9", state == "in-process" )
   then 
     i.setPriceDollars( 20*w );
     i.setState("accepted");
@@ -50,23 +49,11 @@ rule "approvalHazardous"
     System.out.println("Making Approval hazard");
 end
 
-rule "approvedItem"
-  ruleflow-group "updateItem"
-  
-  when
-    i:Item( type == "Class 1" || type == "Class 2" || type== "Class 3" || 
-              type == "Class 4" || type == "Class 5" || type == "Class 6" || type == "Class 7" || type== "Class 8" ||
-              type == "Class 9", state=="in-process")
-  then
-    //i.setType("hazardous-approved");
-    update(i);
-end
-
 rule "retractItem"
 	ruleflow-group "retractItem"
 	
 	when
-		i:Item(state=="accepted"|| state=="rejected")
+		i:Item(state=="rejected")
 	then
 		retract(i);
 end
