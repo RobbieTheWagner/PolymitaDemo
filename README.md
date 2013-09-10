@@ -10,6 +10,8 @@ Bill of Lading table, and can be exported to PDF if desired.
 
 This README will tell you how to install this demo. It will also go through a few sample usages of the program.
 
+### [Here](http://vimeo.com/74146491) is a video explaining most of the installation process.
+
 ## Table of Contents
 ###Installation
 [Step 1: Clone The Repo](#step1) 
@@ -186,7 +188,7 @@ click the project and choose **Run As → Run on Server** and choose the **JBoss
 
 ### Upload POJO Model
 
-Select all the java files under **org.railinc.shipping** and then right click and choose **Export → Java → JAR file**.
+Select all the java files under **org.railroad.shipping** and then right click and choose **Export → Java → JAR file**.
 
 All of the default options for saving the JAR will be fine, just save it somewhere you will remember.
 
@@ -195,7 +197,7 @@ This is Guvnor that you are logging into, and it is where you will upload rules 
 
 After logging in, it will ask you to import sample data because it is a new repository. **DO NOT** do this!
 
-Then click Knowledge Bases and then click **Create New → New Package** and call it **org.railinc.shipping**.
+Then click Knowledge Bases and then click **Create New → New Package** and call it **org.railroad.shipping**.
 
 Still in Knowledge Bases, click **Create New → Upload POJO**. Name it whatever you would like and click next. 
 Then find the JAR you just made and upload it.
@@ -211,30 +213,30 @@ Then find the JAR you just made and upload it.
   * In JBoss Developer Studio, navigate to **src/main/rules**.
   * Select all .drl files, right click and go to **Guvnor → Add**
   * Use your existing Guvnor, click next.
-  * Expand your Guvnor and select **packages/org.railinc.shipping** as the package to upload to.
+  * Expand your Guvnor and select **packages/org.railroad.shipping** as the package to upload to.
   * Click finish
 3. Upload flows to Guvnor
   * In JBoss Developer Studio, navigate to **src/main/resources**.
   * Select all .bpmn2 files, right click and go to **Guvnor → Add**
   * Use your existing Guvnor, click next.
-  * Expand your Guvnor and select **packages/org.railinc.shipping** as the package to upload to.
+  * Expand your Guvnor and select **packages/org.railroad.shipping** as the package to upload to.
   * Click finish
 4. Add the item form
-  * In Guvnor, navigate to **Knowledge Bases → org → railinc → shipping**.
-  * Under the Assets tab open the processes dropdown and open **org.railinc.shipping.ItemFlow**
+  * In Guvnor, navigate to **Knowledge Bases → org → railroad → shipping**.
+  * Under the Assets tab open the processes dropdown and open **org.railroad.shipping.ItemFlow**
   * In the ItemFlow window click the task called "Hazard Human Check"
   * Click on the green shirted man directly above the task and a form editing window pops up
   * In JBoss Developer Studio open up **src/main/resources/humanHazardCheck.html**
   * copy-paste the contents into the process form window in guvnor and click save.
 5. PNG all flows
   * Log in to Guvnor at **http://localhost:8080/jboss-brms** with the Username: **admin** and Password: **admin**.
-  * Click **Knowledge Bases → org → railinc → shipping** to navigate to the package.
+  * Click **Knowledge Bases → org → railroad → shipping** to navigate to the package.
   * Now click **Assets → Processes** and click **Open** next to each process. This will open each one in a tab at the top.
   * Now click each tab, and the flow will appear for that process.
   * While viewing each flow, click the PNG button at the bottom to generate images needed by BRMS. You do not need to save the generated PNG file, it will save the images in assets by itself.
   * After each PNG is generated, click **File → Save Changes**.
 6. Build the package
-  * In Guvnor, navigate to **Knowledge Bases → org → railinc → shipping**.
+  * In Guvnor, navigate to **Knowledge Bases → org → railroad → shipping**.
   * Then click **Edit**.
   * Click the **Validate Configuration** button, followed by the **Build Package** button and fix any errors that may arise.
   * Click **File → Save Changes** to ensure the package that was built is saved.
@@ -254,8 +256,19 @@ Then find the JAR you just made and upload it.
   * For roles type **user,admin**
   * For the next step say **yes**
   * And for EJB say **no**
-  
-Go to http://localhost:8080/dashbuilder and login with **polymita** and the password you created.
+2. Sign in
+  * Go to http://localhost:8080/dashbuilder and login with **polymita** and the password you created.
+3. Add a datasource
+  * On the left side, after signing in, click **Administration**.
+  * Then click **External Connections**
+  * Next click **New DataSource**
+  * Then choose the following:
+  * Type: **JNDI**
+  * Name: **Railroad**
+  * JNDI Path: **java:jboss/datasources/jbpmDS**
+  * Test Query: **SELECT * FROM organizationalentity;**
+4. Add the new datasource as a data provider
+  * On the left, select **Data Providers**
 
 ## <a name="notes"/> Notes 
 * When you make changes, you must click the red stop button to stop the server, then do **Run As → Run on Server** again to redeploy.
