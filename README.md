@@ -264,11 +264,21 @@ Then find the JAR you just made and upload it.
   * Next click **New DataSource**
   * Then choose the following:
   * Type: **JNDI**
-  * Name: **Railroad**
+  * Name: **jbpm**
   * JNDI Path: **java:jboss/datasources/jbpmDS**
   * Test Query: **SELECT * FROM organizationalentity;**
 4. Add the new datasource as a data provider
   * On the left, select **Data Providers**
+  * Click on the drop down and choose **SQL Query**
+  * Name it **Tasks**
+  * select the **jbpm** datasource
+  * in the Query field type **SELECT * FROM task**
+  * click **Attempt Data Load** and then **Save**
+5. Create a Graph
+  * Click on the center dropdown on the top bar and choose **Page template**
+  * Click on the puzzle piece next to that drop down
+  * Go to **Dashboard → Key Performance Indicator** and drag **Instances by status** into the page
+  * Choose the **Tasks** Data provider
 
 ## <a name="notes"/> Notes 
 * When you make changes, you must click the red stop button to stop the server, then do **Run As → Run on Server** again to redeploy.
