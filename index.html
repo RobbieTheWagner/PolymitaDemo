@@ -40,8 +40,12 @@ Bill of Lading table, and can be exported to PDF if desired.</p>
 
 <p>This README will tell you how to install this demo. It will also go through a few sample usages of the program.</p>
 
-<p>Here is a sample video going through the installation of this demo:
- </p><p><a href="http://vimeo.com/74146491">Polymita Demo Installation</a> from <a href="http://vimeo.com/user20737457">Robert Wagner</a> on <a href="https://vimeo.com">Vimeo</a>.</p>
+<h3>
+<a name="here-is-a-video-explaining-most-of-the-installation-process" class="anchor" href="#here-is-a-video-explaining-most-of-the-installation-process"><span class="octicon octicon-link"></span></a>Here is a video explaining most of the installation process.</h3>
+
+ 
+
+<p><a href="http://vimeo.com/74469975">PolymitaDemo Install</a> from <a href="http://vimeo.com/user20737457">Robert Wagner</a> on <a href="https://vimeo.com">Vimeo</a>.</p>
 
 <h2>
 <a name="table-of-contents" class="anchor" href="#table-of-contents"><span class="octicon octicon-link"></span></a>Table of Contents</h2>
@@ -77,8 +81,6 @@ Bill of Lading table, and can be exported to PDF if desired.</p>
 <p><a href="#app">App</a></p>
 
 <p><a href="#bpm">BPM</a></p>
-
-<p><a href="#polymita">Polymita</a></p>
 
 <h2>
 <a name="-step-1-clone-the-repo" class="anchor" href="#-step-1-clone-the-repo"><span class="octicon octicon-link"></span></a><a name="step1"></a> Step 1: Clone The Repo</h2>
@@ -251,7 +253,7 @@ click the project and choose <strong>Run As → Run on Server</strong> and choos
 <h3>
 <a name="upload-pojo-model" class="anchor" href="#upload-pojo-model"><span class="octicon octicon-link"></span></a>Upload POJO Model</h3>
 
-<p>Select all the java files under <strong>org.railinc.shipping</strong> and then right click and choose <strong>Export → Java → JAR file</strong>.</p>
+<p>Select all the java files under <strong>org.railroad.shipping</strong> and then right click and choose <strong>Export → Java → JAR file</strong>.</p>
 
 <p>All of the default options for saving the JAR will be fine, just save it somewhere you will remember.</p>
 
@@ -260,7 +262,7 @@ This is Guvnor that you are logging into, and it is where you will upload rules 
 
 <p>After logging in, it will ask you to import sample data because it is a new repository. <strong>DO NOT</strong> do this!</p>
 
-<p>Then click Knowledge Bases and then click <strong>Create New → New Package</strong> and call it <strong>org.railinc.shipping</strong>.</p>
+<p>Then click Knowledge Bases and then click <strong>Create New → New Package</strong> and call it <strong>org.railroad.shipping</strong>.</p>
 
 <p>Still in Knowledge Bases, click <strong>Create New → Upload POJO</strong>. Name it whatever you would like and click next. 
 Then find the JAR you just made and upload it.</p>
@@ -287,7 +289,7 @@ Then find the JAR you just made and upload it.</p>
 <li>Select all .drl files, right click and go to <strong>Guvnor → Add</strong>
 </li>
 <li>Use your existing Guvnor, click next.</li>
-<li>Expand your Guvnor and select <strong>packages/org.railinc.shipping</strong> as the package to upload to.</li>
+<li>Expand your Guvnor and select <strong>packages/org.railroad.shipping</strong> as the package to upload to.</li>
 <li>Click finish</li>
 </ul>
 </li>
@@ -298,15 +300,15 @@ Then find the JAR you just made and upload it.</p>
 <li>Select all .bpmn2 files, right click and go to <strong>Guvnor → Add</strong>
 </li>
 <li>Use your existing Guvnor, click next.</li>
-<li>Expand your Guvnor and select <strong>packages/org.railinc.shipping</strong> as the package to upload to.</li>
+<li>Expand your Guvnor and select <strong>packages/org.railroad.shipping</strong> as the package to upload to.</li>
 <li>Click finish</li>
 </ul>
 </li>
 <li>Add the item form
 
 <ul>
-<li>In Guvnor, navigate to <strong>Knowledge Bases → org → railinc → shipping</strong>.</li>
-<li>Under the Assets tab open the processes dropdown and open <strong>org.railinc.shipping.ItemFlow</strong>
+<li>In Guvnor, navigate to <strong>Knowledge Bases → org → railroad → shipping</strong>.</li>
+<li>Under the Assets tab open the processes dropdown and open <strong>org.railroad.shipping.ItemFlow</strong>
 </li>
 <li>In the ItemFlow window click the task called "Hazard Human Check"</li>
 <li>Click on the green shirted man directly above the task and a form editing window pops up</li>
@@ -319,7 +321,7 @@ Then find the JAR you just made and upload it.</p>
 
 <ul>
 <li>Log in to Guvnor at <strong>http://localhost:8080/jboss-brms</strong> with the Username: <strong>admin</strong> and Password: <strong>admin</strong>.</li>
-<li>Click <strong>Knowledge Bases → org → railinc → shipping</strong> to navigate to the package.</li>
+<li>Click <strong>Knowledge Bases → org → railroad → shipping</strong> to navigate to the package.</li>
 <li>Now click <strong>Assets → Processes</strong> and click <strong>Open</strong> next to each process. This will open each one in a tab at the top.</li>
 <li>Now click each tab, and the flow will appear for that process.</li>
 <li>While viewing each flow, click the PNG button at the bottom to generate images needed by BRMS. You do not need to save the generated PNG file, it will save the images in assets by itself.</li>
@@ -329,7 +331,7 @@ Then find the JAR you just made and upload it.</p>
 <li>Build the package
 
 <ul>
-<li>In Guvnor, navigate to <strong>Knowledge Bases → org → railinc → shipping</strong>.</li>
+<li>In Guvnor, navigate to <strong>Knowledge Bases → org → railroad → shipping</strong>.</li>
 <li>Then click <strong>Edit</strong>.</li>
 <li>Click the <strong>Validate Configuration</strong> button, followed by the <strong>Build Package</strong> button and fix any errors that may arise.</li>
 <li>Click <strong>File → Save Changes</strong> to ensure the package that was built is saved.</li>
@@ -345,7 +347,76 @@ Then find the JAR you just made and upload it.</p>
 </ol><h2>
 <a name="-step-10-configure-polymita" class="anchor" href="#-step-10-configure-polymita"><span class="octicon octicon-link"></span></a><a name="step10"></a> Step 10: Configure Polymita</h2>
 
-<h2>
+<ol>
+<li>Create a user.
+
+<ul>
+<li>Run ~/Downloads/PolymitaDemo/target/jboss-eap6.1/bin/add-user.sh</li>
+<li>Choose <strong>b</strong> for an Application User</li>
+<li>Press <strong>enter</strong> to select ApplicationRealm</li>
+<li>For username choose <strong>polymita</strong>
+</li>
+<li>Choose any password you desire</li>
+<li>For roles type <strong>user,admin</strong>
+</li>
+<li>For the next step say <strong>yes</strong>
+</li>
+<li>And for EJB say <strong>no</strong>
+</li>
+</ul>
+</li>
+<li>Sign in
+
+<ul>
+<li>Go to http://localhost:8080/dashbuilder and login with <strong>polymita</strong> and the password you created.</li>
+</ul>
+</li>
+<li>Add a datasource
+
+<ul>
+<li>On the left side, after signing in, click <strong>Administration</strong>.</li>
+<li>Then click <strong>External Connections</strong>
+</li>
+<li>Next click <strong>New DataSource</strong>
+</li>
+<li>Then choose the following:</li>
+<li>Type: <strong>JNDI</strong>
+</li>
+<li>Name: <strong>jbpm</strong>
+</li>
+<li>JNDI Path: <strong>java:jboss/datasources/jbpmDS</strong>
+</li>
+<li>Test Query: <strong>SELECT * FROM organizationalentity;</strong>
+</li>
+</ul>
+</li>
+<li>Add the new datasource as a data provider
+
+<ul>
+<li>On the left, select <strong>Data Providers</strong>
+</li>
+<li>Click on the drop down and choose <strong>SQL Query</strong>
+</li>
+<li>Name it <strong>Tasks</strong>
+</li>
+<li>select the <strong>jbpm</strong> datasource</li>
+<li>in the Query field type <strong>SELECT * FROM task</strong>
+</li>
+<li>click <strong>Attempt Data Load</strong> and then <strong>Save</strong>
+</li>
+</ul>
+</li>
+<li>Create a Graph
+
+<ul>
+<li>Click on the center dropdown on the top bar and choose <strong>Page template</strong>
+</li>
+<li>Click on the puzzle piece next to that drop down</li>
+<li>Go to <strong>Dashboard → Key Performance Indicator</strong> and drag <strong>Instances by status</strong> into the page</li>
+<li>Choose the <strong>Tasks</strong> Data provider</li>
+</ul>
+</li>
+</ol><h2>
 <a name="-notes" class="anchor" href="#-notes"><span class="octicon octicon-link"></span></a><a name="notes"></a> Notes</h2>
 
 <ul>
@@ -356,18 +427,16 @@ Then find the JAR you just made and upload it.</p>
 </ul><h2>
 <a name="-app" class="anchor" href="#-app"><span class="octicon octicon-link"></span></a><a name="app"></a> App</h2>
 
-<p>This video will show you how the PolymitaDemo app is used.
- </p><p><a href="http://vimeo.com/74143875">Polymita App (Enhanced)</a> from <a href="http://vimeo.com/user20737457">Robert Wagner</a> on <a href="https://vimeo.com">Vimeo</a>.</p>
+ 
+
+<p><a href="http://vimeo.com/74463930">Polymita Functionality</a> from <a href="http://vimeo.com/user20737457">Robert Wagner</a> on <a href="https://vimeo.com">Vimeo</a>.</p>
 
 <h2>
 <a name="-bpm" class="anchor" href="#-bpm"><span class="octicon octicon-link"></span></a><a name="bpm"></a> BPM</h2>
 
-<p>Explain how to use BPM.</p>
+ 
 
-<h2>
-<a name="-polymita" class="anchor" href="#-polymita"><span class="octicon octicon-link"></span></a><a name="polymita"></a> Polymita</h2>
-
-<p>Explain how to use Polymita.</p>
+<p><a href="http://vimeo.com/74469232">jBPM PolymitaDemo</a> from <a href="http://vimeo.com/user20737457">Robert Wagner</a> on <a href="https://vimeo.com">Vimeo</a>.</p>
         </section>
 
         <aside id="sidebar">
