@@ -10,7 +10,10 @@ Bill of Lading table, and can be exported to PDF if desired.
 
 This README will tell you how to install this demo. It will also go through a few sample usages of the program.
 
-### [Here](http://vimeo.com/74146491) is a video explaining most of the installation process.
+### Here is a video explaining most of the installation process.
+
+<iframe src="//player.vimeo.com/video/74469975" width="500" height="280" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe> 
+<p><a href="http://vimeo.com/74469975">PolymitaDemo Install</a> from <a href="http://vimeo.com/user20737457">Robert Wagner</a> on <a href="https://vimeo.com">Vimeo</a>.</p>
 
 ## Table of Contents
 ###Installation
@@ -40,8 +43,6 @@ This README will tell you how to install this demo. It will also go through a fe
 [App](#app)
 
 [BPM](#bpm)
-
-[Polymita](#polymita)
 
 ## <a name="step1"/> Step 1: Clone The Repo
 Clone this repo into your **~/Downloads** folder.
@@ -287,10 +288,9 @@ Then find the JAR you just made and upload it.
 * You must have psql running whenever running the application, so you can access the databases.
 
 ## <a name="app"/> App 
-<iframe src="//player.vimeo.com/video/74463930" width="500" height="313" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe> <p><a href="http://vimeo.com/74463930">Polymita Functionality</a> from <a href="http://vimeo.com/user20737457">Robert Wagner</a> on <a href="https://vimeo.com">Vimeo</a>.</p>
+<iframe src="//player.vimeo.com/video/74463930" width="500" height="313" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe> 
+<p><a href="http://vimeo.com/74463930">Polymita Functionality</a> from <a href="http://vimeo.com/user20737457">Robert Wagner</a> on <a href="https://vimeo.com">Vimeo</a>.</p>
 
 ## <a name="bpm"/> BPM
-Explain how to use BPM.
-
-## <a name="polymita"/> Polymita
-Explain how to use Polymita.
+<iframe src="//player.vimeo.com/video/74469232" width="500" height="280" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe> 
+<p><a href="http://vimeo.com/74469232">jBPM PolymitaDemo</a> from <a href="http://vimeo.com/user20737457">Robert Wagner</a> on <a href="https://vimeo.com">Vimeo</a>.</p>
