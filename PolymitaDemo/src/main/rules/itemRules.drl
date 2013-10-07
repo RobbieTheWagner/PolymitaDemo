@@ -1,6 +1,8 @@
 //created on: Aug 3, 2013
 package org.railroad.shipping
 
+import org.drools.runtime.process.WorkflowProcessInstance;
+
 dialect "mvel" 
 	
 rule "itemWeightRejection"
@@ -57,4 +59,39 @@ rule "retractItem"
 		i:Item(state=="rejected")
 	then
 		retract(i);
+end
+
+rule "retractApproval"
+	ruleflow-group "beforeHumanTask"
+	when
+		approval:Approval()
+		item:Item(approval.itemParent == item, state != "waiting-on-human-task")
+		process:WorkflowProcessInstance()
+	then
+		item.setState("waiting-on-human-task");
+		update(item)
+		retract(approval)
+		process.setVariable("approval", approval);
+		process.setVariable("itemWeight", item.getWeightLb());
+		process.setVariable("itemType", item.getType());
+		process.setVariable("itemDescription", item.getDescription());
+		process.setVariable("isApproved", "false");
+end
+
+rule "applyApproved"
+	ruleflow-group "afterHumanTask"
+	when
+		process:WorkflowProcessInstance(state == ProcessInstance.STATE_ACTIVE)
+		approval: Approval() from (Approval)process.getVariable("approval")
+		isApproved: String() from (String)process.getVariable("isApproved")
+		item:Item(approval.itemParent == item, state == "waiting-on-human-task")
+	then
+		if(isApproved.equals("true")){
+			approval.setState("approved");
+			item.setState("in-process");
+		} else {
+			approval.setState("denied");
+			item.setState("rejected");
+		}
+		update(item);
 end
